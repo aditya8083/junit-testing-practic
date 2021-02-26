@@ -16,6 +16,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Employee extends BaseEntity {
 
     private static final long serialVersionUID = -6251334536732444048L;
@@ -28,10 +30,6 @@ public class Employee extends BaseEntity {
     private String middleName;
     @NonNull
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            targetEntity = Address.class)
-    private Address address;
     @NonNull
     private String email;
     @NonNull
@@ -41,5 +39,18 @@ public class Employee extends BaseEntity {
     private Date joinedDate;
     private Date lastDayOfWork;
     private EmployeeStatus status;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

@@ -1,7 +1,6 @@
 package com.aditya.banking.system.demo.model.request;
 
 import com.aditya.banking.system.demo.entity.constant.enums.CustomerStatus;
-import com.aditya.banking.system.demo.entity.dao.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +17,12 @@ public class CustomerModel {
     private String middleName;
     private String lastName;
     private String email;
-    private Address address;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
     private String contactNo;
     private Date dateOfBirth;
     private String kycInfo;

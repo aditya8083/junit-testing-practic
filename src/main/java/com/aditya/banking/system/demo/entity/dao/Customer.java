@@ -1,6 +1,5 @@
 package com.aditya.banking.system.demo.entity.dao;
 
-
 import com.aditya.banking.system.demo.entity.constant.TableName;
 import com.aditya.banking.system.demo.entity.constant.enums.CustomerStatus;
 import com.aditya.banking.system.demo.entity.dao.common.BaseEntity;
@@ -30,10 +29,6 @@ public class Customer extends BaseEntity {
     private String middleName;
     @NonNull
     private String lastName;
-    @OneToOne(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            targetEntity = Address.class)
-    private Address address;
     @NonNull
     private String email;
     @NonNull
@@ -41,6 +36,12 @@ public class Customer extends BaseEntity {
     private Date dateOfBirth;
     private String kycInfo;
     private CustomerStatus status;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
 
 
 }
