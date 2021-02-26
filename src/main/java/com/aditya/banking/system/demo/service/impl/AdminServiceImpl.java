@@ -60,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Employee getEmployeeDetails(Long userId, Long employeeId) {
         if (isAdminUser(userId)) {
-            return employeeRepository.getOne(employeeId);
+            return employeeRepository.findById(employeeId).get();
         }
         return null;
     }
