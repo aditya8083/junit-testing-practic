@@ -33,7 +33,7 @@ public class Bank extends BaseEntity {
     private String country;
     private BankStatus status;
 
-
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

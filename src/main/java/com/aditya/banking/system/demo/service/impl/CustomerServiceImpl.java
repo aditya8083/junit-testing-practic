@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer updateCustomer(Long userId, Customer customer, Long customerId) {
-        Customer savedCustomer = customerRepository.getOne(customerId);
+        Customer savedCustomer = getCustomerDetails(userId, customerId);
         customer.setId(customerId);
         customer.setCreatedBy(savedCustomer.getCreatedBy());
         customer.setCreatedDate(savedCustomer.getCreatedDate());

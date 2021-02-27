@@ -39,7 +39,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Employee updateEmployee(Long userId, Employee employee, Long employeeId) {
         if (isAdminUser(userId)) {
-            Employee savedEmployee = employeeRepository.getOne(employeeId);
+            Employee savedEmployee = employeeRepository.findById(employeeId).get();
             employee.setId(employeeId);
             employee.setCreatedBy(savedEmployee.getCreatedBy());
             employee.setCreatedDate(savedEmployee.getCreatedDate());
