@@ -37,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
                 return employeeRepository.save(employee);
             } catch (Exception e) {
                 LOG.error("Error in saving the employee details ");
-                throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), ResponseCode.SYSTEM_ERROR.getMessage());
+                throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
             }
         } else {
             LOG.info("You are not an admin : {}", userId);

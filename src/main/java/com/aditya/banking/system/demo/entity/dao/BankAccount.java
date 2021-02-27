@@ -6,6 +6,7 @@ import com.aditya.banking.system.demo.entity.constant.enums.BankAccountStatus;
 import com.aditya.banking.system.demo.entity.constant.enums.BankAccountType;
 import com.aditya.banking.system.demo.entity.dao.common.BaseEntity;
 import lombok.*;
+import org.springframework.stereotype.Indexed;
 
 import javax.persistence.*;
 

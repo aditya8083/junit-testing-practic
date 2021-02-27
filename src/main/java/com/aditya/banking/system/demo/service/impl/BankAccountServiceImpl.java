@@ -50,13 +50,13 @@ public class BankAccountServiceImpl implements BankAccountService {
                 bankAccount.setCreatedDate(new Date());
                 bankAccount.setUpdatedBy(customerId);
                 bankAccount.setUpdatedDate(new Date());
-                BankAccount savedBankAccount = bankAccountRepository.save(bankAccount);
+                BankAccount savedBankAccount = doTransaction(bankAccount, bankAccount.getWithdrawalAmount(), bankAccount.getDepositAmount());
                 CustomerAccount customerAccount = mappingUtils.getCustomerAccountEntity(savedBankAccount, customerId);
                 customerAccountRepository.save(customerAccount);
                 return savedBankAccount;
             } catch (Exception e) {
                 LOG.error("Error in saving the bankAccount details for customerId : {}", customerId);
-                throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), ResponseCode.SYSTEM_ERROR.getMessage());
+                throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
             }
         } else {
             LOG.info(" Customer doest not exists : {}", customerId);
@@ -86,18 +86,21 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     boolean isAmountTransferable(Double balance, Double transferAmount) {
-        return Double.compare(transferAmount, 0.0) > 0 && Double.compare(balance, transferAmount) > 0;
+        if(Double.compare(transferAmount, 0.0) > 0 && Double.compare(balance, transferAmount) > 0){
+            return true;
+        }else {
+            LOG.info("transfer amount is greater than the amount in account : {}", transferAmount);
+            throw new BusinessLogicException(ResponseCode.TRANSFER_AMOUNT_GREATER.getCode(), ResponseCode.TRANSFER_AMOUNT_GREATER.getMessage());
+        }
     }
 
-    private void doTransfer(BankAccount fromAccount, BankAccount toAccount, Double transferAmount) {
-        BankAccount updatedFromAccount = mappingUtils.mapBankAccountEntity(fromAccount, transferAmount, 0.0);
-        BankAccount updatedToAccount = mappingUtils.mapBankAccountEntity(toAccount, 0.0, transferAmount);
-        BankAccountTransaction fromBankAccountTransaction = mappingUtils.getBankAccountTransactionEntity(fromAccount.getNumber(),fromAccount.getClosingBalance(), transferAmount, 0.0);
-        BankAccountTransaction toBankAccountTransaction = mappingUtils.getBankAccountTransactionEntity(toAccount.getNumber(), toAccount.getClosingBalance(), 0.0, transferAmount);
-        bankAccountTransactionRepository.save(fromBankAccountTransaction);
-        bankAccountTransactionRepository.save(toBankAccountTransaction);
-        bankAccountRepository.save(updatedFromAccount);
-        bankAccountRepository.save(updatedToAccount);
+    private BankAccount doTransaction(BankAccount bankAccount, Double withDrawalAmount, Double depositAmount) {
+        BankAccount updatedBankAccount = mappingUtils.mapBankAccountEntity(bankAccount, withDrawalAmount, depositAmount);
+        BankAccountTransaction bankAccountTransaction =
+                mappingUtils.getBankAccountTransactionEntity(bankAccount.getNumber(), bankAccount.getClosingBalance(), withDrawalAmount, depositAmount);
+        bankAccountTransactionRepository.save(bankAccountTransaction);
+        return bankAccountRepository.save(updatedBankAccount);
+
     }
 
     @Override
@@ -105,10 +108,11 @@ public class BankAccountServiceImpl implements BankAccountService {
     public void transferMoney(Long customerId, Long fromAccount, Long toAccount, Double transferAmount) {
         if (customerRepository.existsById(customerId)) {
             Optional<BankAccount> optionalFromBankAccount = bankAccountRepository.findByNumber(fromAccount);
-            Optional<BankAccount> optionalToBankAccount = bankAccountRepository.findByNumber(fromAccount);
+            Optional<BankAccount> optionalToBankAccount = bankAccountRepository.findByNumber(toAccount);
             if (isBankAccountExistsAndActive(optionalFromBankAccount) && isBankAccountExistsAndActive(optionalToBankAccount)
                     && isAmountTransferable(optionalFromBankAccount.get().getClosingBalance(), transferAmount)) {
-                doTransfer(optionalFromBankAccount.get(), optionalToBankAccount.get(), transferAmount);
+                doTransaction(optionalFromBankAccount.get(), transferAmount, 0.0);
+                doTransaction(optionalToBankAccount.get(), 0.0, transferAmount);
             } else {
                 LOG.info("bank account not found or bank account not active : {}  {} ", fromAccount, toAccount);
                 throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
@@ -121,7 +125,21 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public void depositMoney(Long customerId, Long accountNumber, Double amount) {
+    @Transactional
+    public void depositMoney(Long customerId, Long accountNumber, Double depositAmount) {
+        if (customerRepository.existsById(customerId)) {
+            Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByNumber(accountNumber);
+            if (isBankAccountExistsAndActive(optionalBankAccount) && Double.compare(depositAmount, 0.0) > 0) {
+                doTransaction(optionalBankAccount.get(), 0.0, depositAmount);
+            } else {
+                LOG.info("bank account not found or bank account not active : {} ", accountNumber);
+                throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
+            }
+
+        } else {
+            LOG.info("Customer does not exists : {} ", customerId);
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
+        }
 
     }
 

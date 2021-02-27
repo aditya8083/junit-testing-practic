@@ -37,7 +37,7 @@ public class UserAccountServiceImpl implements UserAccountService {
                     customerServiceImpl.saveCustomer(clientId, customer);
                 }  catch (Exception exception) {
                     LOG.error("Exception while saving the customer data to database : {}", userAccount);
-                    throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), exception.getMessage());
+                    throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
                 }
             }
             userAccount.setLoggedIn(true);

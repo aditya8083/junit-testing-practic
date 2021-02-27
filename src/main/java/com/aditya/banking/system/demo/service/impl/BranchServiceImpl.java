@@ -1,5 +1,6 @@
 package com.aditya.banking.system.demo.service.impl;
 
+import com.aditya.banking.system.demo.dao.BankRepository;
 import com.aditya.banking.system.demo.dao.BranchRepository;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Branch;
@@ -20,20 +21,28 @@ public class BranchServiceImpl implements BranchService {
     BranchRepository branchRepository;
 
     @Autowired
+    BankRepository bankRepository;
+
+    @Autowired
     AdminServiceImpl adminService;
 
     @Override
     public Branch saveBranch(Long userId, Branch branch) {
         if (adminService.isAdminUser(userId)) {
-            try {
-                branch.setCreatedBy(userId);
-                branch.setCreatedDate(new Date());
-                branch.setUpdatedBy(userId);
-                branch.setUpdatedDate(new Date());
-                return branchRepository.save(branch);
-            } catch (Exception e) {
-                LOG.error("Error in saving the Branch details ");
-                throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), ResponseCode.SYSTEM_ERROR.getMessage());
+            if (bankRepository.existsById(branch.getBankId())) {
+                try {
+                    branch.setCreatedBy(userId);
+                    branch.setCreatedDate(new Date());
+                    branch.setUpdatedBy(userId);
+                    branch.setUpdatedDate(new Date());
+                    return branchRepository.save(branch);
+                } catch (Exception exception) {
+                    LOG.error("Error in saving the Branch details ");
+                    throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
+                }
+            } else {
+                LOG.info("Bank does not exists for give branch : {}", branch.getBankId());
+                throw new BusinessLogicException(ResponseCode.BANK_DOES_NOT_EXISTS.getCode(), ResponseCode.BANK_DOES_NOT_EXISTS.getMessage());
             }
         } else {
             LOG.info("You are not an admin : {}", userId);

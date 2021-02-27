@@ -52,4 +52,8 @@ public class Branch extends BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public long getBankId() {
+        return bankId;
+    }
 }
