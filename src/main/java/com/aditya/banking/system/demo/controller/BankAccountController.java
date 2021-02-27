@@ -93,7 +93,7 @@ public class BankAccountController {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=account-transactions_" + bankAccountTransactions.get(0).getBankAccountNumber() + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=" + bankAccountTransactions.get(0).getBankAccountNumber()  +"-transactions_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
         BankAccountStatementPDFExporter exporter = new BankAccountStatementPDFExporter(bankAccountTransactions);
         exporter.export(response);
