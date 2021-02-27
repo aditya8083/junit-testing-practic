@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -145,7 +146,6 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     @Transactional
     public Double calculateInterest(Long customerId, Long accountNumber, Long yearsPassed) {
-
         if (customerRepository.existsById(customerId)) {
             Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByNumber(accountNumber);
             if (isBankAccountExistsAndActive(optionalBankAccount)) {
@@ -160,10 +160,27 @@ public class BankAccountServiceImpl implements BankAccountService {
         }
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<BankAccountTransaction> printAccountStatement(Long customerId, Long accountNumber) {
+        if (customerRepository.existsById(customerId)) {
+            Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByNumber(accountNumber);
+            if (isBankAccountExistsAndActive(optionalBankAccount)) {
+                return bankAccountTransactionRepository.findByBankAccountNumberSortByDate(accountNumber);
+            } else {
+                LOG.info("bank account not found or bank account not active for : {} ", accountNumber);
+                throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
+            }
+        } else {
+            LOG.info("Customer does not exists : {} ", customerId);
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
+        }
+    }
+
     private Double calculateInterestAndUpdateBalance(BankAccount bankAccount, Long yearsPassed) {
         if (Double.compare(bankAccount.getClosingBalance(), 0.0) > 0) {
-            Double interestAmount =
-                    mappingUtils.roundDoubleValue((bankAccount.getClosingBalance() * (Math.pow((1 + bankAccount.getInterestRate() / 100), yearsPassed))) - bankAccount.getClosingBalance());
+            Double interestAmount = mappingUtils.roundDoubleValue(
+                    (bankAccount.getClosingBalance() * (Math.pow((1 + bankAccount.getInterestRate() / 100), yearsPassed))) - bankAccount.getClosingBalance());
             doTransaction(bankAccount, 0.0, interestAmount);
             return interestAmount;
         } else {
@@ -171,6 +188,4 @@ public class BankAccountServiceImpl implements BankAccountService {
             return 0.0d;
         }
     }
-
-
 }

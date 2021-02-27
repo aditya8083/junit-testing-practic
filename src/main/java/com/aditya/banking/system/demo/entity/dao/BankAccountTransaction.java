@@ -72,4 +72,8 @@ public class BankAccountTransaction implements Serializable {
     public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

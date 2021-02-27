@@ -3,15 +3,25 @@ package com.aditya.banking.system.demo.controller;
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.BankAccount;
+import com.aditya.banking.system.demo.entity.dao.BankAccountTransaction;
 import com.aditya.banking.system.demo.model.request.BankAccountModel;
 import com.aditya.banking.system.demo.service.api.BankAccountService;
+import com.aditya.banking.system.demo.utils.BankAccountStatementPDFExporter;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
+import com.lowagie.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -76,9 +86,17 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/printAccountStatement", method = RequestMethod.PUT)
-    public ResponseEntity<Object> printAccountStatement(@RequestParam(value = "customerId") Long customerId,
-                                                        @RequestParam Long accountNumber) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public void printAccountStatement(@RequestParam(value = "customerId") Long customerId,
+                                      @RequestParam Long accountNumber, HttpServletResponse response) throws DocumentException, IOException {
+        List<BankAccountTransaction> bankAccountTransactions = bankAccountService.printAccountStatement(customerId, accountNumber);
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=account-transactions_" + bankAccountTransactions.get(0).getBankAccountNumber() + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+        BankAccountStatementPDFExporter exporter = new BankAccountStatementPDFExporter(bankAccountTransactions);
+        exporter.export(response);
     }
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)

@@ -1,6 +1,9 @@
 package com.aditya.banking.system.demo.service.api;
 
 import com.aditya.banking.system.demo.entity.dao.BankAccount;
+import com.aditya.banking.system.demo.entity.dao.BankAccountTransaction;
+
+import java.util.List;
 
 public interface BankAccountService {
     BankAccount createBankAccount(Long customerId, BankAccount bankAccount);
@@ -12,4 +15,6 @@ public interface BankAccountService {
     void depositMoney(Long customerId, Long accountNumber, Double amount);
 
     Double calculateInterest(Long customerId, Long accountNumber, Long yearsPassed);
+
+    List<BankAccountTransaction> printAccountStatement(Long customerId, Long accountNumber);
 }
