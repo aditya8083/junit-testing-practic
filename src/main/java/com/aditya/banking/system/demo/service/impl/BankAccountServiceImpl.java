@@ -86,9 +86,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     boolean isAmountTransferable(Double balance, Double transferAmount) {
-        if(Double.compare(transferAmount, 0.0) > 0 && Double.compare(balance, transferAmount) > 0){
+        if (Double.compare(transferAmount, 0.0) > 0 && Double.compare(balance, transferAmount) > 0) {
             return true;
-        }else {
+        } else {
             LOG.info("transfer amount is greater than the amount in account : {}", transferAmount);
             throw new BusinessLogicException(ResponseCode.TRANSFER_AMOUNT_GREATER.getCode(), ResponseCode.TRANSFER_AMOUNT_GREATER.getMessage());
         }
@@ -135,12 +135,42 @@ public class BankAccountServiceImpl implements BankAccountService {
                 LOG.info("bank account not found or bank account not active : {} ", accountNumber);
                 throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
             }
-
         } else {
             LOG.info("Customer does not exists : {} ", customerId);
             throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
 
     }
+
+    @Override
+    @Transactional
+    public Double calculateInterest(Long customerId, Long accountNumber, Long yearsPassed) {
+
+        if (customerRepository.existsById(customerId)) {
+            Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByNumber(accountNumber);
+            if (isBankAccountExistsAndActive(optionalBankAccount)) {
+                return calculateInterestAndUpdateBalance(optionalBankAccount.get(), yearsPassed);
+            } else {
+                LOG.info("bank account not found or bank account not active for : {} ", accountNumber);
+                throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
+            }
+        } else {
+            LOG.info("Customer does not exists : {} ", customerId);
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
+        }
+    }
+
+    private Double calculateInterestAndUpdateBalance(BankAccount bankAccount, Long yearsPassed) {
+        if (Double.compare(bankAccount.getClosingBalance(), 0.0) > 0) {
+            Double interestAmount =
+                    mappingUtils.roundDoubleValue((bankAccount.getClosingBalance() * (Math.pow((1 + bankAccount.getInterestRate() / 100), yearsPassed))) - bankAccount.getClosingBalance());
+            doTransaction(bankAccount, 0.0, interestAmount);
+            return interestAmount;
+        } else {
+            doTransaction(bankAccount, 0.0, 0.0);
+            return 0.0d;
+        }
+    }
+
 
 }

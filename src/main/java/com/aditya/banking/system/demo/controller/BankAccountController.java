@@ -41,7 +41,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/depositMoney", method = RequestMethod.PUT)
     public ResponseEntity<Object> depositMoney(@RequestParam(value = "customerId") Long customerId,
-                                                    @RequestParam Long accountNumber,  @RequestParam Double amount) {
+                                               @RequestParam Long accountNumber, @RequestParam Double amount) {
         try {
             bankAccountService.depositMoney(customerId, accountNumber, amount);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
@@ -70,7 +70,7 @@ public class BankAccountController {
             bankAccountService.transferMoney(customerId, fromAccount, toAccount, transferAmount);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
         } catch (Exception exception) {
-            LOG.error("Error in trasferring amount for customer from Account1 to Account2  : {}, {}", customerId, fromAccount,toAccount);
+            LOG.error("Error in transferring amount for customer from Account1 to Account2  : {}, {}", customerId, fromAccount, toAccount);
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -83,7 +83,13 @@ public class BankAccountController {
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)
     public ResponseEntity<Object> calculateInterest(@RequestParam(value = "customerId") Long customerId,
-                                                    @RequestParam Long accountNumber, @RequestParam Long yearsOldAccount) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+                                                    @RequestParam Long accountNumber, @RequestParam Long yearsPassed) {
+        try {
+            Double interestAmount = bankAccountService.calculateInterest(customerId, accountNumber, yearsPassed);
+            return new ResponseEntity<>(interestAmount, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in calculating interest for account : {}", accountNumber);
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

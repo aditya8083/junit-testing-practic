@@ -43,7 +43,7 @@ public class MappingUtils {
     }
 
     private void settleBalances(BankAccount bankAccount, BankAccount previousAccount, double withdrawalAmount, double depositAmount) {
-        bankAccount.setClosingBalance(previousAccount.getClosingBalance() - withdrawalAmount + depositAmount);
+        bankAccount.setClosingBalance(roundDoubleValue(previousAccount.getClosingBalance() - withdrawalAmount + depositAmount));
         bankAccount.setDepositAmount(depositAmount);
         bankAccount.setWithdrawalAmount(withdrawalAmount);
     }
@@ -51,10 +51,14 @@ public class MappingUtils {
     public BankAccountTransaction getBankAccountTransactionEntity(Long bankAccountNumber, Double previousClosingBalance, double withdrawalAmount, double depositAmount) {
         BankAccountTransaction bankAccountTransaction= new BankAccountTransaction();
         bankAccountTransaction.setBankAccountNumber(bankAccountNumber);
-        bankAccountTransaction.setClosingBalance(previousClosingBalance - withdrawalAmount + depositAmount);
+        bankAccountTransaction.setClosingBalance(roundDoubleValue(previousClosingBalance - withdrawalAmount + depositAmount));
         bankAccountTransaction.setDepositAmount(depositAmount);
         bankAccountTransaction.setWithdrawalAmount(withdrawalAmount);
         bankAccountTransaction.setTransactionDate(new Date());
         return bankAccountTransaction;
+    }
+
+    public Double roundDoubleValue(Double value){
+        return  Math.round(value * 100.0) / 100.0;
     }
 }

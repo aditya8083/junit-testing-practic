@@ -10,4 +10,6 @@ public interface BankAccountService {
     void transferMoney(Long customerId, Long fromAccount, Long toAccount, Double transferAmount);
 
     void depositMoney(Long customerId, Long accountNumber, Double amount);
+
+    Double calculateInterest(Long customerId, Long accountNumber, Long yearsPassed);
 }
