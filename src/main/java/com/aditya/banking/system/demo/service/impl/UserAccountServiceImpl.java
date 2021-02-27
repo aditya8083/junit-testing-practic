@@ -1,6 +1,5 @@
 package com.aditya.banking.system.demo.service.impl;
 
-import com.aditya.banking.system.demo.dao.CustomerRepository;
 import com.aditya.banking.system.demo.dao.UserAccountRepository;
 import com.aditya.banking.system.demo.entity.dao.Customer;
 import com.aditya.banking.system.demo.entity.dao.UserAccount;

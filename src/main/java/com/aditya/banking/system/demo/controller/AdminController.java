@@ -28,33 +28,54 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.POST)
-    public ResponseEntity<Employee> addBankEmployee(@RequestParam(value = "userId") Long userId,
-                                                  @RequestBody EmployeeModel employeeModel) throws IOException {
-        Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
-        Employee savedEmployee = adminService.saveEmployee(userId, employee);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.OK);
+    public ResponseEntity<Object> addBankEmployee(@RequestParam(value = "userId") Long userId,
+                                                  @RequestBody EmployeeModel employeeModel) {
+        try {
+            Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
+            Employee savedEmployee = adminService.saveEmployee(userId, employee);
+            return new ResponseEntity<>(savedEmployee, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in saving the bank employee data by User : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(HttpStatus.NON_AUTHORITATIVE_INFORMATION, HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
+
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.PUT)
-    public ResponseEntity<Employee> updateBankEmployee(@RequestParam(value = "userId") Long userId,
-                                                     @RequestBody EmployeeModel employeeModel , @RequestParam Long employeeId) throws IOException {
-        Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
-        Employee updatedEmployee = adminService.updateEmployee(userId, employee, employeeId);
-        return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
+    public ResponseEntity<Object> updateBankEmployee(@RequestParam(value = "userId") Long userId,
+                                                     @RequestBody EmployeeModel employeeModel, @RequestParam Long employeeId) {
+        try {
+            Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
+            Employee updatedEmployee = adminService.updateEmployee(userId, employee, employeeId);
+            return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in updating the bank employee databy User : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteBankEmployee(@RequestParam(value = "userId") Long userId,
-                                                     @RequestParam(value = "employeeId") Long employeeId) throws IOException {
-        adminService.deleteEmployee(userId, employeeId);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+                                                     @RequestParam(value = "employeeId") Long employeeId){
+        try {
+            adminService.deleteEmployee(userId, employeeId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in deleting bank employee data by User : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.GET)
-    public ResponseEntity<Employee> getBankEmployee(@RequestParam(value = "userId") Long userId,
-                                                     @RequestParam(value = "employeeId") Long employeeId) throws IOException {
-        Employee employee = adminService.getEmployeeDetails(userId, employeeId);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+    public ResponseEntity<Object> getBankEmployee(@RequestParam(value = "userId") Long userId,
+                                                  @RequestParam(value = "employeeId") Long employeeId) {
+        try {
+            Employee employee = adminService.getEmployeeDetails(userId, employeeId);
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in getting the bank employee data by User : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+        }
     }
 
 }

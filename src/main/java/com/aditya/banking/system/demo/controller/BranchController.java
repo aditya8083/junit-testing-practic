@@ -33,7 +33,7 @@ public class BranchController {
     RequestMappingUtils requestMappingUtils;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Branch> addBranch(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> addBranch(@RequestParam(value = "userId") Long userId,
                                         @RequestBody BranchModel branchModel) throws IOException {
 
         Branch branch = requestMappingUtils.mapBranchModelRequest(branchModel);
@@ -42,14 +42,14 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Branch> getBranchDetails(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> getBranchDetails(@RequestParam(value = "userId") Long userId,
                                                @RequestParam(value = "branchId") Long branchId) throws IOException {
         Branch savedBranchDetails = branchService.getBranchDetails(userId, branchId);
         return new ResponseEntity<>(savedBranchDetails, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Branch> updateBranch(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> updateBranch(@RequestParam(value = "userId") Long userId,
                                            @RequestBody BranchModel branchModel, @RequestParam(value = "branchId") Long branchId) throws IOException {
         Branch bank = requestMappingUtils.mapBranchModelRequest(branchModel);
         Branch updatedBranch = branchService.updateBranch(userId, bank, branchId);

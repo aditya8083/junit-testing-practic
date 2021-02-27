@@ -25,9 +25,6 @@ public class UserAccountController {
     private static final Logger LOG = LoggerFactory.getLogger(UserAccountController.class);
 
     @Autowired
-    UserAccountRepository accountRepository;
-
-    @Autowired
     RequestMappingUtils requestMappingUtils;
 
     @Autowired
@@ -36,7 +33,7 @@ public class UserAccountController {
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestParam(defaultValue = "1234567") Long clientId, @RequestBody UserAccountModel accountModel) throws Exception {
         UserAccount account = requestMappingUtils.mapUserAccountModelRequest(accountModel);
-        commonService.register(clientId,  account);
+        commonService.register(clientId, account);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
