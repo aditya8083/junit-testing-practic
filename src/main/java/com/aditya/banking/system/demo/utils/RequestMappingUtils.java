@@ -1,8 +1,8 @@
 package com.aditya.banking.system.demo.utils;
 
-import com.aditya.banking.system.demo.exception.RequestMappingException;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.*;
+import com.aditya.banking.system.demo.exception.RequestMappingException;
 import com.aditya.banking.system.demo.model.request.*;
 import org.dozer.DozerBeanMapper;
 import org.dozer.MappingException;
@@ -19,7 +19,7 @@ public class RequestMappingUtils {
         try {
             return new DozerBeanMapper().map(employeeModel, Employee.class);
         } catch (MappingException e) {
-            LOG.error("request mapping exception :{}", e);
+            LOG.error("request mapping exception for employeeModel :{}", e);
             throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
         }
     }
@@ -28,7 +28,7 @@ public class RequestMappingUtils {
         try {
             return new DozerBeanMapper().map(customerModel, Customer.class);
         } catch (MappingException e) {
-            LOG.error("request mapping exception :{}", e);
+            LOG.error("request mapping exception for customerModel :{}", e);
             throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
         }
     }
@@ -37,7 +37,7 @@ public class RequestMappingUtils {
         try {
             return new DozerBeanMapper().map(branchModel, Branch.class);
         } catch (MappingException e) {
-            LOG.error("request mapping exception :{}", e);
+            LOG.error("request mapping exception for branchModel :{}", e);
             throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
         }
     }
@@ -46,17 +46,27 @@ public class RequestMappingUtils {
         try {
             return new DozerBeanMapper().map(bankModel, Bank.class);
         } catch (MappingException e) {
-            LOG.error("request mapping exception :{}", e);
+            LOG.error("request mapping exception for bankModel :{}", e);
             throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
         }
     }
 
-    public UserAccount mapUserAccountModelRequest(UserAccountModel accountModel) {
+    public UserAccount mapUserAccountModelRequest(UserAccountModel userAccountModel) {
         try {
-            return new DozerBeanMapper().map(accountModel, UserAccount.class);
+            return new DozerBeanMapper().map(userAccountModel, UserAccount.class);
         } catch (MappingException e) {
-            LOG.error("request mapping exception :{}", e);
+            LOG.error("request mapping exception for userAccountModel :{}", e);
             throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
         }
+    }
+
+    public BankAccount mapBankAccountModelRequest(BankAccountModel bankAccountModel) {
+        try {
+            return new DozerBeanMapper().map(bankAccountModel, BankAccount.class);
+        } catch (MappingException e) {
+            LOG.error("request mapping exception for bankAccountModel :{}", e);
+            throw new RequestMappingException(ResponseCode.REQUEST_MAPPING_EXCEPTION.getCode(), ResponseCode.REQUEST_MAPPING_EXCEPTION.getMessage());
+        }
+
     }
 }

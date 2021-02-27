@@ -28,10 +28,66 @@ public class BankAccount extends BaseEntity {
     @Column(unique = true)
     private Long number;
 
-    private Long balance;
+    private Double balance;
     private Double interestRate;
     private BankAccountType type;
     private BankAccountStatus status;
     private long bankBranchId;
 
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public Double getInterestRate() {
+        return interestRate;
+    }
+
+    public BankAccountType getType() {
+        return type;
+    }
+
+    public BankAccountStatus getStatus() {
+        return status;
+    }
+
+    public long getBankBranchId() {
+        return bankBranchId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public void setInterestRate(Double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setType(BankAccountType type) {
+        this.type = type;
+    }
+
+    public void setStatus(BankAccountStatus status) {
+        this.status = status;
+    }
+
+    public void setBankBranchId(long bankBranchId) {
+        this.bankBranchId = bankBranchId;
+    }
 }
