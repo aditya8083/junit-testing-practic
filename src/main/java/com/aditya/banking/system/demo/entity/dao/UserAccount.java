@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Builder(toBuilder = true)
 @Data
 @AllArgsConstructor
+@ToString
 @NoArgsConstructor
 public class UserAccount implements Serializable {
 
@@ -57,5 +58,9 @@ public class UserAccount implements Serializable {
 
     public void setEmployee(boolean employee) {
         isEmployee = employee;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

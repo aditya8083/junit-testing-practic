@@ -10,7 +10,6 @@ import javax.persistence.Column;
 @NoArgsConstructor
 public class UserAccountModel {
 
-    private Long id;
     private String email;
     private String contactNo;
     private String password;

@@ -20,7 +20,7 @@ public class BankAccountController {
     @RequestMapping(value = "/createBankAccount", method = RequestMethod.POST)
     public ResponseEntity<Object> createAccount(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
                                                 @RequestBody BankAccountModel accountModel) throws IOException {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)

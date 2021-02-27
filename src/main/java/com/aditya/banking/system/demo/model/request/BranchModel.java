@@ -17,6 +17,7 @@ public class BranchModel {
     private String branchEmail;
     private String branchContactNo;
     private BankBranchStatus status;
+    private long bankId;
     private String address1;
     private String address2;
     private String city;

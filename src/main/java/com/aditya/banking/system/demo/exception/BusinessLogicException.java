@@ -1,13 +1,13 @@
-package com.aditya.banking.system.demo.configuration;
+package com.aditya.banking.system.demo.exception;
 
-public class RequestMappingException extends RuntimeException {
+public class BusinessLogicException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
     private String code;
     private String message;
 
-    public RequestMappingException(String code, String message) {
+    public BusinessLogicException(String code, String message) {
         super();
         this.setCode(code);
         this.setMessage(message);
@@ -32,7 +32,6 @@ public class RequestMappingException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "RequestMappingException{" + "code='" + code + '\'' + "} " + super.toString();
+        return "BusinessLogicException{" + "code='" + code + '\'' + "} " + super.toString();
     }
 }
-

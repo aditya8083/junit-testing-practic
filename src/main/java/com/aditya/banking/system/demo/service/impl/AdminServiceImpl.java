@@ -1,6 +1,6 @@
 package com.aditya.banking.system.demo.service.impl;
 
-import com.aditya.banking.system.demo.configuration.BusinessLogicException;
+import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.dao.EmployeeRepository;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Employee;
@@ -58,10 +58,10 @@ public class AdminServiceImpl implements AdminService {
                 return employeeRepository.save(employee);
             } else {
                 LOG.info("Employee does not exists : {} ", employeeId);
-                throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+                throw new BusinessLogicException(ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getCode(), ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getMessage());
             }
         } else {
-            LOG.info("You are not admin");
+            LOG.info("You are not an admin : {}", userId);
             throw new BusinessLogicException(ResponseCode.NOT_AUTHORIZED_ERROR.getCode(), ResponseCode.NOT_AUTHORIZED_ERROR.getMessage());
         }
     }
@@ -73,10 +73,10 @@ public class AdminServiceImpl implements AdminService {
                 employeeRepository.deleteById(employeeId);
             } else {
                 LOG.info("Employee does not exists : {} ", employeeId);
-                throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+                throw new BusinessLogicException(ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getCode(), ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getMessage());
             }
         } else {
-            LOG.info("You are not admin");
+            LOG.info("You are not an admin : {}", userId);
             throw new BusinessLogicException(ResponseCode.NOT_AUTHORIZED_ERROR.getCode(), ResponseCode.NOT_AUTHORIZED_ERROR.getMessage());
         }
     }
@@ -88,10 +88,10 @@ public class AdminServiceImpl implements AdminService {
                 return employeeRepository.findById(employeeId).get();
             } else {
                 LOG.info("Employee does not exists : {} ", employeeId);
-                throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+                throw new BusinessLogicException(ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getCode(), ResponseCode.EMPLOYEE_DOES_NOT_EXISTS.getMessage());
             }
         } else {
-            LOG.info("You are not admin");
+            LOG.info("You are not an admin : {}", userId);
             throw new BusinessLogicException(ResponseCode.NOT_AUTHORIZED_ERROR.getCode(), ResponseCode.NOT_AUTHORIZED_ERROR.getMessage());
         }
     }

@@ -32,7 +32,7 @@ public class CustomerController {
         try {
             Customer customer = requestMappingUtils.mapCustomerModelRequest(customerModel);
             Customer savedCustomer = customerService.saveCustomer(userId, customer);
-            return new ResponseEntity<>(savedCustomer, HttpStatus.OK);
+            return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
         } catch (Exception exception) {
             LOG.error("Error in saving the customer data by User : {}, {}", userId, exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);

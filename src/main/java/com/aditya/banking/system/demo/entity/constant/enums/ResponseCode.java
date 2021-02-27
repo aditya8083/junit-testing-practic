@@ -4,9 +4,12 @@ public enum ResponseCode {
 
     SUCCESS("SUCCESS", "success"),
     SYSTEM_ERROR("SYSTEM_ERROR", "System Error: Contact our team"),
-    DATA_NOT_EXIST("DATA_NOT_EXIST", "No data exist"),
-    USER_DOES_NOT_EXISTS("USER_DOES_NOT_EXISTS", "User does not exists"),
-    RUNTIME_ERROR("RUNTIME_ERROR", "Runtime Error"),
+    EMPLOYEE_DOES_NOT_EXISTS("EMPLOYEE_DOES_NOT_EXISTS", " Employee does not exists in database"),
+    CUSTOMER_DOES_NOT_EXISTS("CUSTOMER_DOES_NOT_EXISTS", "Customer does not exists in database"),
+    BRANCH_DOES_NOT_EXISTS("BRANCH_DOES_NOT_EXISTS", "Branch does not exists in database"),
+    BANK_DOES_NOT_EXISTS("BANK_DOES_NOT_EXISTS", "Bank does not exists in database"),
+    ACCOUNT_DOES_NOT_EXISTS("ACCOUNT_DOES_NOT_EXISTS", "Account does not exists in database"),
+    ACCOUNT_ALREADY_EXISTS("ACCOUNT_ALREADY_EXISTS", "Account already exists in database"),
     NOT_AUTHORIZED_ERROR("NOT_AUTHORIZED_ERROR","Not authorized to do the operation"),
     REQUEST_MAPPING_EXCEPTION("REQUEST_MAPPING_EXCEPTION", "Request Mapping Exception");
 

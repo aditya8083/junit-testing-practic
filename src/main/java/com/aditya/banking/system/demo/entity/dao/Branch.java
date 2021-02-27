@@ -37,6 +37,9 @@ public class Branch extends BaseEntity {
     @Column(unique = true)
     private String contactNo;
 
+    @NonNull
+    private long bankId;
+
     private BankBranchStatus status;
 
     private String address1;

@@ -1,8 +1,10 @@
 package com.aditya.banking.system.demo.service.impl;
 
 import com.aditya.banking.system.demo.dao.UserAccountRepository;
+import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Customer;
 import com.aditya.banking.system.demo.entity.dao.UserAccount;
+import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.service.api.UserAccountService;
 import com.aditya.banking.system.demo.utils.MappingUtils;
 import org.slf4j.Logger;
@@ -26,17 +28,23 @@ public class UserAccountServiceImpl implements UserAccountService {
     MappingUtils mappingUtils;
 
     @Override
-    public void register(Long clientId, UserAccount userAccount) throws Exception {
-        Optional<UserAccount> accountOptional = userAccountRepository.findById(userAccount.getId());
+    public void register(Long clientId, UserAccount userAccount){
+        Optional<UserAccount> accountOptional = userAccountRepository.findByEmail(userAccount.getEmail());
         if (!accountOptional.isPresent()) {
             if (!userAccount.isEmployee()) {
-                Customer customer = mappingUtils.mapUserAccountToCustomerEntity(userAccount);
-                customerServiceImpl.saveCustomer(clientId, customer);
+                try {
+                    Customer customer = mappingUtils.mapUserAccountToCustomerEntity(userAccount);
+                    customerServiceImpl.saveCustomer(clientId, customer);
+                }  catch (Exception exception) {
+                    LOG.error("Exception while saving the customer data to database : {}", userAccount);
+                    throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), exception.getMessage());
+                }
             }
             userAccount.setLoggedIn(true);
             userAccountRepository.save(userAccount);
         } else {
-            throw new Exception();
+           LOG.info("Account Already exists in database : {}", userAccount);
+           throw new BusinessLogicException(ResponseCode.ACCOUNT_ALREADY_EXISTS.getCode(), ResponseCode.ACCOUNT_ALREADY_EXISTS.getMessage());
         }
     }
 
@@ -47,6 +55,8 @@ public class UserAccountServiceImpl implements UserAccountService {
             account.get().setLoggedIn(true);
             userAccountRepository.save(account.get());
         } else {
+            LOG.info("Account does not exists in database : {}", userId);
+            throw new BusinessLogicException(ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getCode(), ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getMessage());
         }
     }
 
@@ -57,7 +67,8 @@ public class UserAccountServiceImpl implements UserAccountService {
             account.get().setLoggedIn(false);
             userAccountRepository.save(account.get());
         } else {
-
+            LOG.info("Account does not exists in database : {}", userId);
+            throw new BusinessLogicException(ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getCode(), ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getMessage());
         }
     }
 }

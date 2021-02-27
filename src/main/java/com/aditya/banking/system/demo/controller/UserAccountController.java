@@ -1,9 +1,7 @@
 package com.aditya.banking.system.demo.controller;
 
 
-import com.aditya.banking.system.demo.dao.UserAccountRepository;
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
-
 import com.aditya.banking.system.demo.entity.dao.UserAccount;
 import com.aditya.banking.system.demo.model.request.UserAccountModel;
 import com.aditya.banking.system.demo.service.api.UserAccountService;
@@ -30,27 +28,40 @@ public class UserAccountController {
     @Autowired
     UserAccountService commonService;
 
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public ResponseEntity<Object> register(@RequestParam(defaultValue = "1234567") Long clientId, @RequestBody UserAccountModel accountModel) throws Exception {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(@RequestParam(defaultValue = "1234567") Long clientId, @RequestBody UserAccountModel accountModel) {
         UserAccount account = requestMappingUtils.mapUserAccountModelRequest(accountModel);
-        commonService.register(clientId, account);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        try {
+            commonService.register(clientId, account);
+            return new ResponseEntity<>(null, HttpStatus.CREATED);
+        } catch (Exception exception) {
+            LOG.error("Error in registering the user : {}, {}", account.getEmail(), exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.PRECONDITION_FAILED);
+        }
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.PUT)
+    @RequestMapping(value = "/login", method = RequestMethod.PUT)
     public ResponseEntity<Object> login(@RequestParam Long userId,
-                                                       @RequestParam String password) throws IOException {
-        commonService.login(userId, password);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+                                        @RequestParam String password) throws IOException {
+        try {
+            commonService.login(userId, password);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception exception) {
+            LOG.error("Error in login for user : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.PRECONDITION_FAILED);
+        }
     }
 
-    @RequestMapping(value = "/logout",method = RequestMethod.PUT)
+    @RequestMapping(value = "/logout", method = RequestMethod.PUT)
     public ResponseEntity<Object> logout(@RequestParam Long userId) throws IOException {
-        commonService.logout(userId);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        try {
+            commonService.logout(userId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }catch (Exception exception) {
+            LOG.error("Error in logout for user : {}, {}", userId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.PRECONDITION_FAILED);
+        }
     }
-
-
 
 
 }

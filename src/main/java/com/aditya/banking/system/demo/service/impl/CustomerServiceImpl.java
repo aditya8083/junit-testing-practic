@@ -1,6 +1,6 @@
 package com.aditya.banking.system.demo.service.impl;
 
-import com.aditya.banking.system.demo.configuration.BusinessLogicException;
+import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.dao.CustomerRepository;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Customer;
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
             return customerRepository.findById(customerId).get();
         } else {
             LOG.info(" Customer doest not exists : {}", customerId);
-            throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
             return customerRepository.save(customer);
         } else {
             LOG.info("Customer does not exists : {} ", customerId);
-            throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
 
     }
@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerRepository.deleteById(customerId);
         } else {
             LOG.info("Customer does not exists : {} ", customerId);
-            throw new BusinessLogicException(ResponseCode.USER_DOES_NOT_EXISTS.getCode(), ResponseCode.USER_DOES_NOT_EXISTS.getMessage());
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
     }
 }

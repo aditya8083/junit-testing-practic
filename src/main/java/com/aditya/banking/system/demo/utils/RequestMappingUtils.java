@@ -1,6 +1,6 @@
 package com.aditya.banking.system.demo.utils;
 
-import com.aditya.banking.system.demo.configuration.RequestMappingException;
+import com.aditya.banking.system.demo.exception.RequestMappingException;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.*;
 import com.aditya.banking.system.demo.model.request.*;
