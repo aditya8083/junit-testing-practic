@@ -1,6 +1,5 @@
 package com.aditya.banking.system.demo.model.request;
 
-import com.aditya.banking.system.demo.entity.constant.enums.BankStatus;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -9,12 +8,15 @@ import javax.persistence.Column;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BankModel {
+public class UserAccountModel {
 
-    private String name;
-    private String logo;
+    private Long id;
     private String email;
     private String contactNo;
-    private BankStatus status;
+    private String password;
+    private String firstName;
+    private String lastName;
+    private boolean isLoggedIn = true;
+    private boolean isEmployee = false;
 
 }

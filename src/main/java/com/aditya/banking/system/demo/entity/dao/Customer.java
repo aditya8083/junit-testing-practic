@@ -24,18 +24,26 @@ public class Customer extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private Long id;
+
     @NonNull
     private String firstName;
+
     private String middleName;
     @NonNull
     private String lastName;
-    @NonNull
+
+    @Column(unique = true)
     private String email;
-    @NonNull
+
+    @Column(unique = true)
     private String contactNo;
+
     private Date dateOfBirth;
+
     private String kycInfo;
+
     private CustomerStatus status;
     private String address1;
     private String address2;

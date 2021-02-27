@@ -17,18 +17,18 @@ public class EmployeeModel {
     private String firstName;
     private String middleName;
     private String lastName;
+    private String email;
+    private String contactNo;
+    private boolean isAdmin = false;
+    private Date dateOfBirth;
+    private Date joinedDate;
+    private Date lastDayOfWork;
+    private EmployeeStatus status;
     private String address1;
     private String address2;
     private String city;
     private String state;
     private String zip;
     private String country;
-    private String email;
-    private String contactNo;
-    private boolean isAdmin;
-    private Date dateOfBirth;
-    private Date joinedDate;
-    private Date lastDayOfWork;
-    private EmployeeStatus status;
 
 }

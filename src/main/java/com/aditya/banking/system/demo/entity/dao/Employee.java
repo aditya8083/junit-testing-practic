@@ -24,17 +24,24 @@ public class Employee extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
     private Long id;
+
     @NonNull
     private String firstName;
+
     private String middleName;
+
     @NonNull
     private String lastName;
-    @NonNull
+
+    @Column(unique = true)
     private String email;
-    @NonNull
+
+    @Column(unique = true)
     private String contactNo;
-    private boolean isAdmin;
+
+    private boolean isAdmin  = false;
     private Date dateOfBirth;
     private Date joinedDate;
     private Date lastDayOfWork;

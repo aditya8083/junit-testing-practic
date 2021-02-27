@@ -1,18 +1,17 @@
 package com.aditya.banking.system.demo.entity.constant.enums;
 
-public enum BankStatus {
+public enum BankAccountStatus {
 
-    OPEN("open"), CLOSED("closed");
+    ACTIVE("active"), BLOCKED("blocked"), INACTIVE("inactive");
 
     private String status;
 
-    BankStatus(String status) {
+    BankAccountStatus(String status) {
         this.status = status;
     }
 
     public String getStatus() {
         return status;
     }
-
 
 }

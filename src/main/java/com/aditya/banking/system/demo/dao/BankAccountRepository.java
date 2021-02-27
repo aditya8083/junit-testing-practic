@@ -1,9 +1,9 @@
 package com.aditya.banking.system.demo.dao;
 
-import com.aditya.banking.system.demo.entity.dao.Account;
+import com.aditya.banking.system.demo.entity.dao.BankAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
 }

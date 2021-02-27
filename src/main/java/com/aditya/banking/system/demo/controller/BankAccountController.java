@@ -1,7 +1,7 @@
 package com.aditya.banking.system.demo.controller;
 
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
-import com.aditya.banking.system.demo.model.request.AccountModel;
+import com.aditya.banking.system.demo.model.request.BankAccountModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,37 +12,37 @@ import java.io.IOException;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(ApiPath.ACCOUNT)
-public class AccountController {
+@RequestMapping(ApiPath.BANK_ACCOUNT)
+public class BankAccountController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BankAccountController.class);
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> createAccount(@RequestHeader(value = "userId") String userId,
-                                                @RequestBody AccountModel accountModel) throws IOException {
+    @RequestMapping(value = "/createBankAccount", method = RequestMethod.POST)
+    public ResponseEntity<Object> createAccount(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
+                                                @RequestBody BankAccountModel accountModel) throws IOException {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)
-    public ResponseEntity<Object> getAccountBalance(@RequestHeader(value = "userId") String userId,
+    public ResponseEntity<Object> getAccountBalance(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
                                                     @RequestParam Long accountNumber) throws IOException {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/transferMoney", method = RequestMethod.PUT)
-    public ResponseEntity<Object> transferMoney(@RequestHeader(value = "userId") String userId,
+    public ResponseEntity<Object> transferMoney(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
                                                 @RequestParam Long fromAccount, @RequestParam Long toAccount, @RequestParam Double transferAmount) throws IOException {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/printAccountStatement", method = RequestMethod.PUT)
-    public ResponseEntity<Object> printAccountStatement(@RequestHeader(value = "userId") String userId,
+    public ResponseEntity<Object> printAccountStatement(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
                                                         @RequestParam Long accountNumber) throws IOException {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)
-    public ResponseEntity<Object> calculateInterest(@RequestHeader(value = "userId") String userId,
+    public ResponseEntity<Object> calculateInterest(@RequestHeader(value = "userId", defaultValue = "1234567") String userId,
                                                     @RequestParam Long accountNumber, @RequestParam Long yearsOldAccount) throws IOException {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

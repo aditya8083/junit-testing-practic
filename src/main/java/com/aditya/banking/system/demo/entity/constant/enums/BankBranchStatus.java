@@ -1,12 +1,12 @@
 package com.aditya.banking.system.demo.entity.constant.enums;
 
-public enum AccountType {
+public enum BankBranchStatus {
 
-    SAVINGS("savings"), CURRENT("current"), LOAN("loan"), SALARY("salary");
+    OPEN("open"), CLOSED("closed"), TEMPORARY_OUT_OF_ORDER("temporary_out_of_order");
 
     private String status;
 
-    AccountType(String status) {
+    BankBranchStatus(String status) {
         this.status = status;
     }
 
