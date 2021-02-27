@@ -5,6 +5,7 @@ public class TableName {
     public static final String BANK = "bank";
     public static final String USER_ACCOUNT = "user_account";
     public static final String BANK_ACCOUNT = "bank_account";
+    public static final String BANK_ACCOUNT_TRANSACTION = "bank_account_transaction";
     public static final String BRANCH = "branch";
     public static final String CUSTOMER = "customer";
     public static final String CUSTOMER_ACCOUNT = "customer_account";

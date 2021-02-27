@@ -28,7 +28,9 @@ public class BankAccount extends BaseEntity {
     @Column(unique = true)
     private Long number;
 
-    private Double balance;
+    private Double withdrawalAmount;
+    private Double depositAmount;
+    private Double closingBalance;
     private Double interestRate;
     private BankAccountType type;
     private BankAccountStatus status;
@@ -39,8 +41,28 @@ public class BankAccount extends BaseEntity {
         return number;
     }
 
-    public Double getBalance() {
-        return balance;
+    public Double getWithdrawalAmount() {
+        return withdrawalAmount;
+    }
+
+    public void setWithdrawalAmount(Double withdrawalAmount) {
+        this.withdrawalAmount = withdrawalAmount;
+    }
+
+    public Double getDepositAmount() {
+        return depositAmount;
+    }
+
+    public void setDepositAmount(Double depositAmount) {
+        this.depositAmount = depositAmount;
+    }
+
+    public Double getClosingBalance() {
+        return closingBalance;
+    }
+
+    public void setClosingBalance(Double closingBalance) {
+        this.closingBalance = closingBalance;
     }
 
     public Double getInterestRate() {
@@ -63,9 +85,6 @@ public class BankAccount extends BaseEntity {
         return id;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
 
     public void setId(Long id) {
         this.id = id;

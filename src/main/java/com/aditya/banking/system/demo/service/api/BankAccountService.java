@@ -8,4 +8,6 @@ public interface BankAccountService {
     Double getAccountBalance(Long customerId, Long accountNumber);
 
     void transferMoney(Long customerId, Long fromAccount, Long toAccount, Double transferAmount);
+
+    void depositMoney(Long customerId, Long accountNumber, Double amount);
 }

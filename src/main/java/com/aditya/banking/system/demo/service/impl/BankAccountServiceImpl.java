@@ -1,12 +1,10 @@
 package com.aditya.banking.system.demo.service.impl;
 
-import com.aditya.banking.system.demo.dao.BankAccountRepository;
-import com.aditya.banking.system.demo.dao.BranchRepository;
-import com.aditya.banking.system.demo.dao.CustomerAccountRepository;
-import com.aditya.banking.system.demo.dao.CustomerRepository;
+import com.aditya.banking.system.demo.dao.*;
 import com.aditya.banking.system.demo.entity.constant.enums.BankAccountStatus;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.BankAccount;
+import com.aditya.banking.system.demo.entity.dao.BankAccountTransaction;
 import com.aditya.banking.system.demo.entity.dao.CustomerAccount;
 import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.service.api.BankAccountService;
@@ -33,6 +31,9 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Autowired
     CustomerAccountRepository customerAccountRepository;
+
+    @Autowired
+    BankAccountTransactionRepository bankAccountTransactionRepository;
 
     @Autowired
     BranchRepository branchRepository;
@@ -73,7 +74,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         if (customerRepository.existsById(customerId)) {
             Optional<BankAccount> optionalBankAccount = bankAccountRepository.findByNumber(accountNumber);
             if (isBankAccountExistsAndActive(optionalBankAccount)) {
-                return optionalBankAccount.get().getBalance();
+                return optionalBankAccount.get().getClosingBalance();
             } else {
                 LOG.info("bank account not found or bank account not active : {} ", accountNumber);
                 throw new BusinessLogicException(ResponseCode.BANK_ACCOUNT_NOT_FOUND.getCode(), ResponseCode.BANK_ACCOUNT_NOT_FOUND.getMessage());
@@ -89,8 +90,14 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     private void doTransfer(BankAccount fromAccount, BankAccount toAccount, Double transferAmount) {
-        bankAccountRepository.save(mappingUtils.mapBankAccountEntity(fromAccount, (fromAccount.getBalance() - transferAmount)));
-        bankAccountRepository.save(mappingUtils.mapBankAccountEntity(toAccount, (toAccount.getBalance() + transferAmount)));
+        BankAccount updatedFromAccount = mappingUtils.mapBankAccountEntity(fromAccount, transferAmount, 0.0);
+        BankAccount updatedToAccount = mappingUtils.mapBankAccountEntity(toAccount, 0.0, transferAmount);
+        BankAccountTransaction fromBankAccountTransaction = mappingUtils.getBankAccountTransactionEntity(fromAccount.getNumber(),fromAccount.getClosingBalance(), transferAmount, 0.0);
+        BankAccountTransaction toBankAccountTransaction = mappingUtils.getBankAccountTransactionEntity(toAccount.getNumber(), toAccount.getClosingBalance(), 0.0, transferAmount);
+        bankAccountTransactionRepository.save(fromBankAccountTransaction);
+        bankAccountTransactionRepository.save(toBankAccountTransaction);
+        bankAccountRepository.save(updatedFromAccount);
+        bankAccountRepository.save(updatedToAccount);
     }
 
     @Override
@@ -100,7 +107,7 @@ public class BankAccountServiceImpl implements BankAccountService {
             Optional<BankAccount> optionalFromBankAccount = bankAccountRepository.findByNumber(fromAccount);
             Optional<BankAccount> optionalToBankAccount = bankAccountRepository.findByNumber(fromAccount);
             if (isBankAccountExistsAndActive(optionalFromBankAccount) && isBankAccountExistsAndActive(optionalToBankAccount)
-                    && isAmountTransferable(optionalFromBankAccount.get().getBalance(), transferAmount)) {
+                    && isAmountTransferable(optionalFromBankAccount.get().getClosingBalance(), transferAmount)) {
                 doTransfer(optionalFromBankAccount.get(), optionalToBankAccount.get(), transferAmount);
             } else {
                 LOG.info("bank account not found or bank account not active : {}  {} ", fromAccount, toAccount);
@@ -110,6 +117,11 @@ public class BankAccountServiceImpl implements BankAccountService {
             LOG.info("Customer does not exists : {} ", customerId);
             throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
+
+    }
+
+    @Override
+    public void depositMoney(Long customerId, Long accountNumber, Double amount) {
 
     }
 

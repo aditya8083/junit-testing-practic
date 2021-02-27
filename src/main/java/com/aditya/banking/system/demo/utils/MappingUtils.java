@@ -1,9 +1,6 @@
 package com.aditya.banking.system.demo.utils;
 
-import com.aditya.banking.system.demo.entity.dao.BankAccount;
-import com.aditya.banking.system.demo.entity.dao.Customer;
-import com.aditya.banking.system.demo.entity.dao.CustomerAccount;
-import com.aditya.banking.system.demo.entity.dao.UserAccount;
+import com.aditya.banking.system.demo.entity.dao.*;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
@@ -19,7 +16,7 @@ public class MappingUtils {
     }
 
     public CustomerAccount getCustomerAccountEntity(BankAccount bankAccount, Long customerId) {
-        CustomerAccount customerAccount  = new CustomerAccount();
+        CustomerAccount customerAccount = new CustomerAccount();
         customerAccount.setBankId(bankAccount.getId());
         customerAccount.setCreatedBy(bankAccount.getCreatedBy());
         customerAccount.setCreatedDate(bankAccount.getCreatedDate());
@@ -29,9 +26,9 @@ public class MappingUtils {
         return customerAccount;
     }
 
-    public BankAccount mapBankAccountEntity(BankAccount previousAccount, double newBalance) {
-        BankAccount bankAccount= new BankAccount();
-        bankAccount.setBalance(newBalance);
+    public BankAccount mapBankAccountEntity(BankAccount previousAccount, double withdrawalAmount, double depositAmount) {
+        BankAccount bankAccount = new BankAccount();
+        settleBalances(bankAccount, previousAccount, withdrawalAmount, depositAmount);
         bankAccount.setId(previousAccount.getId());
         bankAccount.setInterestRate(previousAccount.getInterestRate());
         bankAccount.setNumber(previousAccount.getNumber());
@@ -43,5 +40,21 @@ public class MappingUtils {
         bankAccount.setCreatedBy(previousAccount.getCreatedBy());
         bankAccount.setCreatedDate(previousAccount.getCreatedDate());
         return bankAccount;
+    }
+
+    private void settleBalances(BankAccount bankAccount, BankAccount previousAccount, double withdrawalAmount, double depositAmount) {
+        bankAccount.setClosingBalance(previousAccount.getClosingBalance() - withdrawalAmount + depositAmount);
+        bankAccount.setDepositAmount(depositAmount);
+        bankAccount.setWithdrawalAmount(withdrawalAmount);
+    }
+
+    public BankAccountTransaction getBankAccountTransactionEntity(Long bankAccountNumber, Double previousClosingBalance, double withdrawalAmount, double depositAmount) {
+        BankAccountTransaction bankAccountTransaction= new BankAccountTransaction();
+        bankAccountTransaction.setBankAccountNumber(bankAccountNumber);
+        bankAccountTransaction.setClosingBalance(previousClosingBalance - withdrawalAmount + depositAmount);
+        bankAccountTransaction.setDepositAmount(depositAmount);
+        bankAccountTransaction.setWithdrawalAmount(withdrawalAmount);
+        bankAccountTransaction.setTransactionDate(new Date());
+        return bankAccountTransaction;
     }
 }

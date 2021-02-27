@@ -12,7 +12,9 @@ import lombok.*;
 public class BankAccountModel {
 
     private Long number;
-    private Double balance;
+    private Double withdrawalAmount;
+    private Double depositAmount;
+    private Double closingBalance;
     private Double interestRate;
     private BankAccountType type;
     private BankAccountStatus status;

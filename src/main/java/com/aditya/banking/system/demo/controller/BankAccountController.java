@@ -39,6 +39,18 @@ public class BankAccountController {
         }
     }
 
+    @RequestMapping(value = "/depositMoney", method = RequestMethod.PUT)
+    public ResponseEntity<Object> depositMoney(@RequestParam(value = "customerId") Long customerId,
+                                                    @RequestParam Long accountNumber,  @RequestParam Double amount) {
+        try {
+            bankAccountService.depositMoney(customerId, accountNumber, amount);
+            return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in fetching the balance for customer from accountNumber : {}, {}", customerId, accountNumber);
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)
     public ResponseEntity<Object> getAccountBalance(@RequestParam(value = "customerId") Long customerId,
                                                     @RequestParam Long accountNumber) {
