@@ -1,0 +1,1215 @@
+{
+	"id": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+	"name": "bank-demo",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "AdminController - Employee",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"30f28f1b-eb73-48d6-06b2-fddd752c0804",
+				"d1907ed9-347c-4ccc-7f59-e008957f5965",
+				"9e38aa2f-8bf8-e3e9-8c71-925f3b8c3549",
+				"47082b91-f3c0-b93b-8c36-3d3c235803ba"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635"
+		},
+		{
+			"name": "BankAccountController",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"4d179aab-730a-a1ad-ea7c-cce5c93a7596",
+				"79c40d61-18a8-093b-91d0-33627d28b486",
+				"4e065bef-4ad9-f724-efd9-9bb38d17d2fa",
+				"ba3ef280-1745-241f-0e94-cc96c231c121",
+				"3a19c1d8-bc1b-ee94-30ae-56cf6043f0e6",
+				"948c8d7a-49bc-4417-7e97-23a0daefea67"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"name": "BankController - only admin has access  to these apis ",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"6e99297c-43a7-d17b-b1cc-5fa6b92643e3",
+				"08398f33-3707-8fe6-9886-98250751de73",
+				"0c6956ce-2a52-a182-28e5-3cf6f4211a82",
+				"0d8b99dd-719c-a3de-9436-8df6711f7fb4",
+				"a4955a32-68eb-84a5-2297-e021bb56bcae"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "337210a0-004e-6102-8b05-81ce5b4c594b"
+		},
+		{
+			"name": "BranchController - only admin has access to these apis",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"46e8e0ab-051e-0edf-6124-1adccd9049bc",
+				"9ab7d4ba-e24d-f18a-6ce3-5bf244ca7dc6",
+				"0fef2e99-9152-8ed6-bb6a-e4c9b3fb2df6",
+				"01d63b39-644e-4506-3c65-eacb29658534"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "27fa08d5-61a7-e760-6342-365444344d6b"
+		},
+		{
+			"name": "CustomerController",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"be925a0c-0da2-b70a-9b48-796715ee2fc7",
+				"4ece1d51-0e13-b8c4-c232-27b2360be95d",
+				"5a57b4ee-c831-f29b-ec01-0b801afba26f"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "073200cc-e4e4-9b55-0a99-0db0a7f98364"
+		},
+		{
+			"name": "UserAccountController",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"efb914d9-2241-7530-67fa-4d90c658c480",
+				"f39a63a2-403a-1746-f318-6030c343580c",
+				"09f940ab-147e-3a5b-dfae-5da609b3ffd9"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "7b7e1d4d-5d6d-c2fe-cc61-25876408fb7f"
+		}
+	],
+	"folders_order": [
+		"7b7e1d4d-5d6d-c2fe-cc61-25876408fb7f",
+		"f6ea5b5b-d924-46e2-2b36-009fa8bdd635",
+		"337210a0-004e-6102-8b05-81ce5b4c594b",
+		"27fa08d5-61a7-e760-6342-365444344d6b",
+		"073200cc-e4e4-9b55-0a99-0db0a7f98364",
+		"ad2add81-28a9-f8f5-8885-a7859add1a5e"
+	],
+	"timestamp": 1614505614753,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "01d63b39-644e-4506-3c65-eacb29658534",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nbranchId: 2\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "branchId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/branch",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "delete",
+			"description": "http://localhost:8083/bank/branch",
+			"descriptionFormat": "html",
+			"time": 1614507430301,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "27fa08d5-61a7-e760-6342-365444344d6b"
+		},
+		{
+			"id": "08398f33-3707-8fe6-9886-98250751de73",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWEyIiwiaWF0IjoxNjE0NTA0NzY3LCJleHAiOjE2MTQ1OTExNjd9.Hr8XxmoSjOD39R6ZQwxOBdl1kXR__CJhsTYCNlnsIHh0Qf-ySyIHVil75GVn6BhKCSBkwxBc1x4uUtTHxVA2eA\nuserId: 4232\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWEyIiwiaWF0IjoxNjE0NTA0NzY3LCJleHAiOjE2MTQ1OTExNjd9.Hr8XxmoSjOD39R6ZQwxOBdl1kXR__CJhsTYCNlnsIHh0Qf-ySyIHVil75GVn6BhKCSBkwxBc1x4uUtTHxVA2eA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "4232",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "pot -user- unauthorize",
+			"description": "http://localhost:8083/bank",
+			"descriptionFormat": "html",
+			"time": 1614506758298,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "337210a0-004e-6102-8b05-81ce5b4c594b",
+			"rawModeData": "{\n\t\"name\":\"aditya-banks\",\n\t\"logo\":\"coming\",\n\t\"email\":\"ab@aditya.com\",\n\t\"contactNo\":\"2ssdf1324\",\n\t\"status\":\"OPEN\"\n\t\n}"
+		},
+		{
+			"id": "09f940ab-147e-3a5b-dfae-5da609b3ffd9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/login",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "login-user",
+			"description": "http://localhost:8083/bank/account/login",
+			"descriptionFormat": "html",
+			"time": 1614505686781,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7b7e1d4d-5d6d-c2fe-cc61-25876408fb7f",
+			"rawModeData": "{\n\t\"username\":\"aditya2\",\n\t\"password\":\"123423432\"\n}"
+		},
+		{
+			"id": "0c6956ce-2a52-a182-28e5-3cf6f4211a82",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nContent-Type: application/json\nbankId: 1\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bankId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "put",
+			"description": "http://localhost:8083/bank",
+			"descriptionFormat": "html",
+			"time": 1614506769388,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "337210a0-004e-6102-8b05-81ce5b4c594b",
+			"rawModeData": "{\n    \"createdDate\": \"2021-02-28T09:55:28.695+00:00\",\n    \"createdBy\": \"12321\",\n    \"updatedDate\": \"2021-02-28T09:55:28.695+00:00\",\n    \"updatedBy\": \"12321\",\n    \"id\": 1,\n    \"name\": \"aditya-bank\",\n    \"logo\": \"coming soon\",\n    \"email\": \"a@aditya.com\",\n    \"contactNo\": \"21324\",\n    \"status\": \"OPEN\"\n}"
+		},
+		{
+			"id": "0d8b99dd-719c-a3de-9436-8df6711f7fb4",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nbankId: 1\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bankId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "get",
+			"description": "http://localhost:8083/bank",
+			"descriptionFormat": "html",
+			"time": 1614506779311,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "337210a0-004e-6102-8b05-81ce5b4c594b"
+		},
+		{
+			"id": "0fef2e99-9152-8ed6-bb6a-e4c9b3fb2df6",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nbranchId: 3\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "branchId",
+					"value": "3",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/branch",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "get",
+			"description": "http://localhost:8083/bank/branch",
+			"descriptionFormat": "html",
+			"time": 1614507416521,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "27fa08d5-61a7-e760-6342-365444344d6b"
+		},
+		{
+			"id": "30f28f1b-eb73-48d6-06b2-fddd752c0804",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/admin/bankEmployee",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "post",
+			"description": "http://localhost:8083/bank/admin/bankEmployee",
+			"descriptionFormat": "html",
+			"time": 1614505740375,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635",
+			"rawModeData": "{\n\t\"email\":\"a4@gmail.com\",\n\t\"contactNo\" : 31333234324,\n\t\"firstName\" :\"aditya123\",\n\t\"lastName\":\"pandey\"\n}"
+		},
+		{
+			"id": "3a19c1d8-bc1b-ee94-30ae-56cf6043f0e6",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 2\nfromAccount: 232123423\ntransferAmount: 300.0\ntoAccount: 2323423\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "fromAccount",
+					"value": "232123423",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "transferAmount",
+					"value": "300.0",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "toAccount",
+					"value": "2323423",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/transferMoney",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "transfer-money",
+			"description": "http://localhost:8083/bank/account/transferMoney",
+			"descriptionFormat": "html",
+			"time": 1614514711577,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"id": "46e8e0ab-051e-0edf-6124-1adccd9049bc",
+			"headers": "Content-Type: application/json\nuserId: 12321\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/branch",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "post",
+			"description": "http://localhost:8083/bank/branch",
+			"descriptionFormat": "html",
+			"time": 1614507361880,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "27fa08d5-61a7-e760-6342-365444344d6b",
+			"rawModeData": "{\n\t\"code\":\"aditya-bank-branch2\",\n\t\"ifscCode\":\"23423fd12f\",\n\t\"email\":\"a122211@aditya.com\",\n\t\"contactNo\":\"1212334324\",\n\t\"bankId\":\"3\",\n\t\"status\":\"OPEN\"\n}"
+		},
+		{
+			"id": "47082b91-f3c0-b93b-8c36-3d3c235803ba",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nemployeeId: 2\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "employeeId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/admin/bankEmployee",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "delete",
+			"description": "http://localhost:8083/bank/admin/bankEmployee",
+			"descriptionFormat": "html",
+			"time": 1614505791669,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635"
+		},
+		{
+			"id": "4d179aab-730a-a1ad-ea7c-cce5c93a7596",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 1\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/createBankAccount",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "createBankAccount",
+			"description": "http://localhost:8083/bank/account/createBankAccount",
+			"descriptionFormat": "html",
+			"time": 1614513413429,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e",
+			"rawModeData": "{\n       \"number\":232123423,\n       \"closingBalance\":0.0,\n       \"depositAmount\": 1000.0,\n       \"interestRate\":3.5,\n       \"type\":\"SAVINGS\",\n       \"status\":\"ACTIVE\",\n       \"bankBranchId\":1\n}"
+		},
+		{
+			"id": "4e065bef-4ad9-f724-efd9-9bb38d17d2fa",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 2\naccountNumber: 2323423\nyearsPassed: 1\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "accountNumber",
+					"value": "2323423",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "yearsPassed",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/calculateInterest",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "ccalculate interest",
+			"description": "http://localhost:8083/bank/account/calculateInterest",
+			"descriptionFormat": "html",
+			"time": 1614514671944,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"id": "4ece1d51-0e13-b8c4-c232-27b2360be95d",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\ncustomerId: 3\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "3",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/customer",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "put",
+			"description": "http://localhost:8083/bank/customer",
+			"descriptionFormat": "html",
+			"time": 1614510433432,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "073200cc-e4e4-9b55-0a99-0db0a7f98364",
+			"rawModeData": "{\n\t\"createdDate\": \"2021-02-28T07:50:10.337+00:00\",\n    \"createdBy\": \"a2@gmail.com\",\n    \"updatedDate\": \"2021-02-28T07:50:10.337+00:00\",\n    \"updatedBy\": \"a2@gmail.com\",\n    \"id\": 3,\n    \"firstName\": \"aditya\",\n    \"middleName\": null,\n    \"lastName\": \"pandey\",\n    \"email\": \"a2@gmail.com\",\n    \"contactNo\": \"214234324\",\n    \"dateOfBirth\": null,\n    \"kycInfo\": \"updated\",\n    \"status\": null,\n    \"address1\": null,\n    \"address2\": null,\n    \"city\": null,\n    \"state\": null,\n    \"zip\": null,\n    \"country\": null\n}"
+		},
+		{
+			"id": "5a57b4ee-c831-f29b-ec01-0b801afba26f",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 2\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/customer",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "delete",
+			"description": "http://localhost:8083/bank/customer",
+			"descriptionFormat": "html",
+			"time": 1614510446627,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "073200cc-e4e4-9b55-0a99-0db0a7f98364"
+		},
+		{
+			"id": "6e99297c-43a7-d17b-b1cc-5fa6b92643e3",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nContent-Type: application/json\nuserId: 12321\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "post - admin success",
+			"description": "http://localhost:8083/bank",
+			"descriptionFormat": "html",
+			"time": 1614506721149,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "337210a0-004e-6102-8b05-81ce5b4c594b",
+			"rawModeData": "{\n\t\"name\":\"aditya-bank1\",\n\t\"logo\":\"coming1\",\n\t\"email\":\"a1@aditya.com\",\n\t\"contactNo\":\"21324\",\n\t\"status\":\"OPEN\"\n\t\n}"
+		},
+		{
+			"id": "79c40d61-18a8-093b-91d0-33627d28b486",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 2\naccountNumber: 2323423\namount: 50.0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "accountNumber",
+					"value": "2323423",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "amount",
+					"value": "50.0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/depositMoney",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "depositmoney",
+			"description": "http://localhost:8083/bank/account/depositMoney",
+			"descriptionFormat": "html",
+			"time": 1614514656710,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"id": "948c8d7a-49bc-4417-7e97-23a0daefea67",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 1\naccountNumber: 232123423\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "accountNumber",
+					"value": "232123423",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/printAccountStatement",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "printAccountStatement",
+			"description": "http://localhost:8083/bank/account/printAccountStatement",
+			"descriptionFormat": "html",
+			"time": 1614514728511,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"id": "9ab7d4ba-e24d-f18a-6ce3-5bf244ca7dc6",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nbranchId: 3\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "branchId",
+					"value": "3",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/branch",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "put",
+			"description": "http://localhost:8083/bank/branch",
+			"descriptionFormat": "html",
+			"time": 1614507399436,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "27fa08d5-61a7-e760-6342-365444344d6b",
+			"rawModeData": "{\n    \"createdDate\": \"2021-02-28T10:12:57.002+00:00\",\n    \"createdBy\": \"12321\",\n    \"updatedDate\": \"2021-02-28T10:12:57.002+00:00\",\n    \"updatedBy\": \"12321\",\n    \"id\": 3,\n    \"code\": \"aditya-bank-branch2\",\n    \"ifscCode\": \"23423fd12f\",\n    \"email\": \"a122211@aditya.com\",\n    \"contactNo\": \"1212334324\",\n    \"bankId\": 3,\n    \"status\": \"OPEN\",\n    \"address1\": \"updated\",\n    \"address2\": \"updated\",\n    \"city\": null,\n    \"state\": null,\n    \"zip\": null,\n    \"country\": null\n}"
+		},
+		{
+			"id": "9e38aa2f-8bf8-e3e9-8c71-925f3b8c3549",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nemployeeId: 1\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "employeeId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/admin/bankEmployee",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "get",
+			"description": "http://localhost:8083/bank/admin/bankEmployee",
+			"descriptionFormat": "html",
+			"time": 1614505779976,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635"
+		},
+		{
+			"id": "a4955a32-68eb-84a5-2297-e021bb56bcae",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nuserId: 12321\nbankId: 2\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "userId",
+					"value": "12321",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bankId",
+					"value": "2",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "delete",
+			"description": "http://localhost:8083/bank",
+			"descriptionFormat": "html",
+			"time": 1614506791278,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "337210a0-004e-6102-8b05-81ce5b4c594b",
+			"rawModeData": ""
+		},
+		{
+			"id": "ba3ef280-1745-241f-0e94-cc96c231c121",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 1\naccountNumber: 232123423\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "accountNumber",
+					"value": "232123423",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/getBalance",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "get-balance",
+			"description": "http://localhost:8083/bank/account/getBalance",
+			"descriptionFormat": "html",
+			"time": 1614514693606,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "ad2add81-28a9-f8f5-8885-a7859add1a5e"
+		},
+		{
+			"id": "be925a0c-0da2-b70a-9b48-796715ee2fc7",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\ncustomerId: 3\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "3",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/customer",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "get",
+			"description": "http://localhost:8083/bank/customer",
+			"descriptionFormat": "html",
+			"time": 1614510416442,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "073200cc-e4e4-9b55-0a99-0db0a7f98364",
+			"rawModeData": "{\n\t\"\"\n}"
+		},
+		{
+			"id": "d1907ed9-347c-4ccc-7f59-e008957f5965",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw\nemployeeId: 1\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGl0eWExIiwiaWF0IjoxNjE0NTA0MjY2LCJleHAiOjE2MTQ1OTA2NjZ9.GD6EriYon0hEK_C-CnW_1ja9QTSHsNeHZFcxIQgC7PLlVlWfS9ujI8qy34sYyhxfm3i5ajKF6JCeda2IGSMAxw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "employeeId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/admin/bankEmployee",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": [],
+			"dataMode": "raw",
+			"name": "put",
+			"description": "http://localhost:8083/bank/admin/bankEmployee",
+			"descriptionFormat": "html",
+			"time": 1614505757194,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635",
+			"rawModeData": "{\n    \"createdDate\": \"2021-02-28T09:29:01.164+00:00\",\n    \"createdBy\": \"a45@gmail.com\",\n    \"updatedDate\": \"2021-02-28T09:29:01.164+00:00\",\n    \"updatedBy\": \"a45@gmail.com\",\n    \"id\": 1,\n    \"firstName\": \"aditya12\",\n    \"middleName\": null,\n    \"lastName\": \"pande12y\",\n    \"email\": \"a45@gmail.com\",\n    \"contactNo\": \"31423234324\",\n    \"dateOfBirth\": null,\n    \"joinedDate\": null,\n    \"lastDayOfWork\": null,\n    \"status\": \"ACTIVE\",\n    \"address1\": \"someaddress\",\n    \"address2\": \"some address\",\n    \"city\": \"some city\",\n    \"state\": \"some state\",\n    \"zip\": \"some zip\",\n    \"country\": null,\n    \"admin\": false\n}"
+		},
+		{
+			"id": "efb914d9-2241-7530-67fa-4d90c658c480",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/register",
+			"folder": "7b7e1d4d-5d6d-c2fe-cc61-25876408fb7f",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614510227661,
+			"name": "register",
+			"description": "http://localhost:8083/bank/account/register",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"31aditya\",\n\t\"email\":\"a132@gmail.com\",\n\t\"password\":\"13423432\",\n\t\"role\":[\"user\",\"admin\"],\n\t\"contactNo\" : 114234324,\n\t\"firstName\" :\"aditya\",\n\t\"lastName\":\"pandey\",\n\t\"isEmployee\" :false\n\t\t\n}"
+		},
+		{
+			"id": "f39a63a2-403a-1746-f318-6030c343580c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/account/login",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1614510457181,
+			"name": "login-admin",
+			"description": "http://localhost:8083/bank/account/login",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"31aditya\",\n\t\"password\":\"13423432\"\n}"
+		}
+	]
+}
