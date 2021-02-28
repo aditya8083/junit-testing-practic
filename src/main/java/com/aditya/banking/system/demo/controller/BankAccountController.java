@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,7 @@ public class BankAccountController {
     BankAccountService bankAccountService;
 
     @RequestMapping(value = "/createBankAccount", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> createAccount(@RequestParam(value = "customerId") Long customerId,
                                                 @RequestBody BankAccountModel bankAccountModel) {
         try {
@@ -50,6 +52,7 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/depositMoney", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> depositMoney(@RequestParam(value = "customerId") Long customerId,
                                                @RequestParam Long accountNumber, @RequestParam Double amount) {
         try {
@@ -62,6 +65,7 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> getAccountBalance(@RequestParam(value = "customerId") Long customerId,
                                                     @RequestParam Long accountNumber) {
         try {
@@ -74,6 +78,7 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/transferMoney", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Object> transferMoney(@RequestParam(value = "customerId") Long customerId,
                                                 @RequestParam Long fromAccount, @RequestParam Long toAccount, @RequestParam Double transferAmount) {
         try {
@@ -86,6 +91,7 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/printAccountStatement", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void printAccountStatement(@RequestParam(value = "customerId") Long customerId,
                                       @RequestParam Long accountNumber, HttpServletResponse response) throws DocumentException, IOException {
         List<BankAccountTransaction> bankAccountTransactions = bankAccountService.printAccountStatement(customerId, accountNumber);
@@ -100,6 +106,7 @@ public class BankAccountController {
     }
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> calculateInterest(@RequestParam(value = "customerId") Long customerId,
                                                     @RequestParam Long accountNumber, @RequestParam Long yearsPassed) {
         try {

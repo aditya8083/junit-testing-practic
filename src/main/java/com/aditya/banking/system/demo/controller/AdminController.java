@@ -10,12 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(ApiPath.ADMIN)
 public class AdminController {
 
@@ -28,6 +29,7 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> addBankEmployee(@RequestParam(value = "userId") String userId,
                                                   @RequestBody EmployeeModel employeeModel) {
         try {
@@ -42,6 +44,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateBankEmployee(@RequestParam(value = "userId") String userId,
                                                      @RequestBody EmployeeModel employeeModel, @RequestParam Long employeeId) {
         try {
@@ -55,6 +58,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteBankEmployee(@RequestParam(value = "userId") String userId,
                                                      @RequestParam(value = "employeeId") Long employeeId){
         try {
@@ -67,6 +71,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> getBankEmployee(@RequestParam(value = "userId") String userId,
                                                   @RequestParam(value = "employeeId") Long employeeId) {
         try {

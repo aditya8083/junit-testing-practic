@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,6 +28,7 @@ public class CustomerController {
 
 
     @RequestMapping(method = RequestMethod.POST)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> addCustomer(@RequestBody CustomerModel customerModel) {
         try {
             Customer customer = requestMappingUtils.mapCustomerModelRequest(customerModel);
@@ -39,6 +41,7 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> getCustomerDetails(
                                                      @RequestParam(value = "customerId") Long customerId) {
         try {
@@ -51,6 +54,7 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Object> updateCustomer(
                                                  @RequestBody CustomerModel customerModel, @RequestParam(value = "customerId") Long customerId) {
         try {
@@ -64,6 +68,7 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteCustomer(
                                                  @RequestParam(value = "customerId") Long customerId) {
         try {

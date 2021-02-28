@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,6 +31,7 @@ public class BranchController {
     RequestMappingUtils requestMappingUtils;
 
     @RequestMapping(method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> addBranch(@RequestParam(value = "userId") String userId,
                                             @RequestBody BranchModel branchModel) {
         try {
@@ -43,6 +45,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> getBranchDetails(@RequestParam(value = "userId") String userId,
                                                    @RequestParam(value = "branchId") Long branchId) {
         try {
@@ -55,6 +58,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateBranch(@RequestParam(value = "userId") String userId,
                                                @RequestBody BranchModel branchModel, @RequestParam(value = "branchId") Long branchId) {
         try {
@@ -68,6 +72,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteBranch(@RequestParam(value = "userId") String userId,
                                                @RequestParam(value = "branchId") Long branchId) {
         try {

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,6 +27,7 @@ public class BankController {
     RequestMappingUtils requestMappingUtils;
 
     @RequestMapping(method = RequestMethod.POST)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> addBank(@RequestParam(value = "userId") String userId,
                                           @RequestBody BankModel bankModel) {
         try {
@@ -39,6 +41,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> getBankDetails(@RequestParam(value = "userId") String userId,
                                                  @RequestParam(value = "bankId") Long bankId) {
         try {
@@ -51,6 +54,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateBank(@RequestParam(value = "userId") String userId,
                                              @RequestBody BankModel bankModel, @RequestParam(value = "bankId") Long bankId) {
         try {
@@ -64,6 +68,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteBank(@RequestParam(value = "userId") String userId,
                                              @RequestParam(value = "bankId") Long bankId) {
         try {
