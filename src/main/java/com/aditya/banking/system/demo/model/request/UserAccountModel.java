@@ -2,7 +2,6 @@ package com.aditya.banking.system.demo.model.request;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import java.util.Set;
 
 @Data
@@ -12,33 +11,33 @@ import java.util.Set;
 public class UserAccountModel {
 
     @NonNull
-    private Long userName;
+    private String username;
 
     @NonNull
     private String email;
 
     @NonNull
-    private String contactNo;
-
-    @NonNull
     private String password;
+
+    private Set<String> role;
+
+  /*  @NonNull
+    private String contactNo;
 
     @NonNull
     private String firstName;
 
     @NonNull
-    private String lastName;
+    private String lastName;*/
 
-    private Set<String> role;
+   // private boolean isEmployee = false;
 
-    private boolean isEmployee = false;
-
-    public Long getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(Long userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -49,14 +48,6 @@ public class UserAccountModel {
         this.email = email;
     }
 
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -65,35 +56,11 @@ public class UserAccountModel {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Set<String> getRole() {
         return role;
     }
 
     public void setRole(Set<String> role) {
         this.role = role;
-    }
-
-    public boolean isEmployee() {
-        return isEmployee;
-    }
-
-    public void setEmployee(boolean employee) {
-        isEmployee = employee;
     }
 }

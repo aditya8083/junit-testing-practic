@@ -42,7 +42,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
+    @Autowired(required=true)
     PasswordEncoder encoder;
 
     @Autowired
@@ -52,7 +52,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public void register(UserAccountModel userAccountModel) {
 
-        UserAccount userAccount = new UserAccount(userAccountModel.getUserName(), userAccountModel.getEmail(), encoder.encode(userAccountModel.getPassword()));
+        UserAccount userAccount = new UserAccount(userAccountModel.getUsername(), userAccountModel.getEmail(), encoder.encode(userAccountModel.getPassword()));
 
         Set<String> strRoles = userAccountModel.getRole();
         Set<Role> roles = new HashSet<>();
@@ -70,12 +70,6 @@ public class UserAccountServiceImpl implements UserAccountService {
                         roles.add(adminRole);
 
                         break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-
-                        break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -83,19 +77,19 @@ public class UserAccountServiceImpl implements UserAccountService {
                 }
             });
         }
-        try {
+    /*    try {
             Customer customer = mappingUtils.mapUserAccountToCustomerEntity(userAccountModel);
-            customerServiceImpl.saveCustomer(userAccountModel.getUserName(), customer);
+            customerServiceImpl.saveCustomer(Long.valueOf(userAccountModel.getUsername().hashCode()), customer);
         } catch (Exception exception) {
             LOG.error("Exception while saving the customer data to database : {}", userAccount);
             throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
-        }
+        }*/
         userAccount.setRoles(roles);
         userAccountRepository.save(userAccount);
 
     }
 
-    @Override
+   /* @Override
     public UserDetailsImpl login(LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -104,9 +98,8 @@ public class UserAccountServiceImpl implements UserAccountService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        Optional<UserAccount> account = userAccountRepository.findByIdAndPassword(userId, password);
+        Optional<UserAccount> account = userAccountRepository.findByIdAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
         if (account.isPresent()) {
-            account.get().setLoggedIn(true);
             userAccountRepository.save(account.get());
         } else {
             LOG.info("Account does not exists in database : {}", userId);
@@ -124,5 +117,5 @@ public class UserAccountServiceImpl implements UserAccountService {
             LOG.info("Account does not exists in database : {}", userId);
             throw new BusinessLogicException(ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getCode(), ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getMessage());
         }
-    }
+    }*/
 }

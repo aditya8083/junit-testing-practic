@@ -24,41 +24,41 @@ public class UserAccount {
     private Long id;
 
     @NonNull
-    private Long userName;
-
-    @NonNull
-    private String email;
+    private String username;
 
     @NonNull
     private String password;
 
-
+    @NonNull
+    private String email;
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_account_roles",
             joinColumns = @JoinColumn(name = "user_account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public UserAccount(@NonNull Long userName, @NonNull String email, @NonNull String password) {
-        this.userName = userName;
+    public UserAccount(@NonNull String username, @NonNull String email, @NonNull String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public Long getUserName() {
-        return userName;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserName(Long userName) {
-        this.userName = userName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -69,6 +69,13 @@ public class UserAccount {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -77,5 +84,4 @@ public class UserAccount {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
 }
