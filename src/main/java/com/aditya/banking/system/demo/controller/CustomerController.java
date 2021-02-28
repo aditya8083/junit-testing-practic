@@ -6,6 +6,9 @@ import com.aditya.banking.system.demo.entity.dao.Customer;
 import com.aditya.banking.system.demo.model.request.CustomerModel;
 import com.aditya.banking.system.demo.service.api.CustomerService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
+
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Update customer by Admin and User Both")
     public ResponseEntity<Object> updateCustomer(
             @RequestBody CustomerModel customerModel, @RequestHeader(value = "customerId") Long customerId) {
         try {
@@ -43,6 +47,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Get saved customerDetails by Admin and User Both")
     public ResponseEntity<Object> getCustomerDetails(@RequestHeader(value = "customerId") Long customerId) {
         try {
             Customer savedCustomer = customerService.getCustomerDetails(customerId);
@@ -55,6 +60,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Delete customer by Admin Onlu")
     public ResponseEntity<Object> deleteCustomer(@RequestHeader(value = "customerId") Long customerId) {
         try {
             customerService.deleteCustomer(customerId);

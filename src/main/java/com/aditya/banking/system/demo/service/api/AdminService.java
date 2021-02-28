@@ -3,11 +3,33 @@ package com.aditya.banking.system.demo.service.api;
 import com.aditya.banking.system.demo.entity.dao.Employee;
 
 public interface AdminService {
-    Employee saveEmployee( Employee employee);
+    /**
+     * Create bank employee by admin only
+     *
+     * @param employee employee entity object
+     */
+    Employee createEmployee(Employee employee);
 
-    Employee updateEmployee( Employee employee, Long employeeId);
 
-    void deleteEmployee( Long employeeId);
+    /**
+     * Update bank employee by Admin only
+     *
+     * @param employee   employee entity object \
+     * @param employeeId employeeId
+     */
+    Employee updateEmployee(Employee employee, Long employeeId);
 
-    Employee getEmployeeDetails( Long employeeId);
+    /**
+     * Delete bank employee by Admin only
+     *
+     * @param employeeId employeeId
+     */
+    void deleteEmployee(Long employeeId);
+
+    /**
+     * Get bank employee Details by Admin only
+     *
+     * @param employeeId employeeId
+     */
+    Employee getEmployeeDetails(Long employeeId);
 }

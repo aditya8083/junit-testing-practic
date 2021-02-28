@@ -6,6 +6,9 @@ import com.aditya.banking.system.demo.entity.dao.Employee;
 import com.aditya.banking.system.demo.model.request.EmployeeModel;
 import com.aditya.banking.system.demo.service.api.AdminService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
+
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,54 +30,56 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping(value = "/bankEmployee", method = RequestMethod.POST)
+    @PostMapping(value = "/bankEmployee")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> addBankEmployee(
-            @RequestBody EmployeeModel employeeModel) {
+    @ApiOperation(value = "create Bank Employee by Admin")
+    public ResponseEntity<Object> createBankEmployee(@RequestBody EmployeeModel employeeModel) {
         try {
             Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
-            Employee savedEmployee = adminService.saveEmployee(employee);
+            Employee savedEmployee = adminService.createEmployee(employee);
             return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
         } catch (Exception exception) {
-            LOG.error("Error in saving the bank employee data by User : {}, {}", exception.getMessage());
+            LOG.error("Error in saving the bank employee data by User : {}", exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
         }
-
     }
 
-    @RequestMapping(value = "/bankEmployee", method = RequestMethod.PUT)
+    @PutMapping(value = "/bankEmployee")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "update Bank Employee by Admin")
     public ResponseEntity<Object> updateBankEmployee(@RequestBody EmployeeModel employeeModel, @RequestHeader Long employeeId) {
         try {
             Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
             Employee updatedEmployee = adminService.updateEmployee(employee, employeeId);
             return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
         } catch (Exception exception) {
-            LOG.error("Error in updating the bank employee data by User : {}, {}", exception.getMessage());
+            LOG.error("Error in updating the bank employee data by User : {}", exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
 
-    @RequestMapping(value = "/bankEmployee", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/bankEmployee")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "delete Bank Employee by Admin")
     public ResponseEntity<Object> deleteBankEmployee(@RequestHeader(value = "employeeId") Long employeeId) {
         try {
             adminService.deleteEmployee(employeeId);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
         } catch (Exception exception) {
-            LOG.error("Error in deleting bank employee data by User : {}, {}", exception.getMessage());
+            LOG.error("Error in deleting bank employee data by User : {}", exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
 
-    @RequestMapping(value = "/bankEmployee", method = RequestMethod.GET)
+    @GetMapping(value = "/bankEmployee")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "get Bank Employee details by Admin")
     public ResponseEntity<Object> getBankEmployee(@RequestHeader(value = "employeeId") Long employeeId) {
         try {
             Employee employee = adminService.getEmployeeDetails(employeeId);
             return new ResponseEntity<>(employee, HttpStatus.OK);
         } catch (Exception exception) {
-            LOG.error("Error in getting the bank employee data by User : {}, {}", exception.getMessage());
+            LOG.error("Error in getting the bank employee data by User : {}", exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }

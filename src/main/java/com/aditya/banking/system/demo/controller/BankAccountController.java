@@ -9,6 +9,9 @@ import com.aditya.banking.system.demo.service.api.BankAccountService;
 import com.aditya.banking.system.demo.utils.BankAccountStatementPDFExporter;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
 import com.lowagie.text.DocumentException;
+
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +42,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/createBankAccount", method = RequestMethod.POST)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "create Bank Account by Admin or User")
     public ResponseEntity<Object> createAccount(@RequestHeader(value = "customerId") Long customerId,
                                                 @RequestBody BankAccountModel bankAccountModel) {
         try {
@@ -53,6 +57,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/depositMoney", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Deposit money in Bank Account for given account number by Admin or User")
     public ResponseEntity<Object> depositMoney(@RequestHeader(value = "customerId") Long customerId,
                                                @RequestHeader Long accountNumber, @RequestHeader Double amount) {
         try {
@@ -66,6 +71,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Get account balance from Bank Account using customerId by Admin or User")
     public ResponseEntity<Object> getAccountBalance(@RequestHeader(value = "customerId") Long customerId,
                                                     @RequestHeader Long accountNumber) {
         try {
@@ -79,6 +85,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/transferMoney", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER')")
+    @ApiOperation(value = "transfer money from Bank Account by Admin or User")
     public ResponseEntity<Object> transferMoney(@RequestHeader(value = "customerId") Long customerId,
                                                 @RequestHeader Long fromAccount, @RequestHeader Long toAccount, @RequestHeader Double transferAmount) {
         try {
@@ -92,6 +99,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/printAccountStatement", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "print account statement for given Bank Account by Admin or User")
     public void printAccountStatement(@RequestHeader(value = "customerId") Long customerId,
                                       @RequestHeader Long accountNumber, HttpServletResponse response) throws DocumentException, IOException {
         List<BankAccountTransaction> bankAccountTransactions = bankAccountService.printAccountStatement(customerId, accountNumber);
@@ -107,6 +115,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "calculate interest for given Bank Account number by Admin or User")
     public ResponseEntity<Object> calculateInterest(@RequestHeader(value = "customerId") Long customerId,
                                                     @RequestHeader Long accountNumber, @RequestHeader Long yearsPassed) {
         try {

@@ -8,6 +8,8 @@ import com.aditya.banking.system.demo.model.request.BranchModel;
 import com.aditya.banking.system.demo.service.api.BranchService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,9 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> addBranch(@RequestHeader(value = "userId") String userId,
+
+    @ApiOperation(value = "create bank Branch by Admin only")
+    public ResponseEntity<Object> createBranch(@RequestHeader(value = "userId") String userId,
                                             @RequestBody BranchModel branchModel) {
         try {
             Branch branch = requestMappingUtils.mapBranchModelRequest(branchModel);
@@ -48,6 +52,7 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Get bank Branch by Admin only")
     public ResponseEntity<Object> getBranchDetails(@RequestHeader(value = "userId") String userId,
                                                    @RequestHeader(value = "branchId") Long branchId) {
         try {
@@ -61,6 +66,7 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Update bank Branch by Admin only")
     public ResponseEntity<Object> updateBranch(@RequestHeader(value = "userId") String userId,
                                                @RequestBody BranchModel branchModel, @RequestHeader(value = "branchId") Long branchId) {
         try {
@@ -75,6 +81,7 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Delete bank Branch by Admin only")
     public ResponseEntity<Object> deleteBranch(@RequestHeader(value = "userId") String userId,
                                                @RequestHeader(value = "branchId") Long branchId) {
         try {

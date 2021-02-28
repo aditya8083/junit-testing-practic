@@ -2,12 +2,14 @@ package com.aditya.banking.system.demo.controller;
 
 import com.aditya.banking.system.demo.dao.UserAccountRepository;
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
-import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.model.request.LoginRequest;
 import com.aditya.banking.system.demo.model.request.UserAccountModel;
 import com.aditya.banking.system.demo.model.response.LoginResponse;
 import com.aditya.banking.system.demo.service.api.UserAccountService;
 import com.aditya.banking.system.demo.utils.MessageResponse;
+
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class UserAccountController {
 
 
     @PostMapping(value = "/register")
+    @ApiOperation(value = "register")
     public ResponseEntity<?> register(@RequestBody UserAccountModel userAccountModel) {
         try {
             if (userAccountRepository.existsByUsername(userAccountModel.getUsername())) {
@@ -41,7 +44,7 @@ public class UserAccountController {
             }
             userAccountService.register(userAccountModel);
             return ResponseEntity.ok(new MessageResponse("201", "User registered successfully!"));
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             LOG.error("Error in registering User :  {}", userAccountModel.getUsername());
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 
@@ -49,6 +52,7 @@ public class UserAccountController {
     }
 
     @PostMapping("/login")
+    @ApiOperation(value = "logina")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         LOG.info("sign-in for user : {}", loginRequest.getUsername());
         LoginResponse loginResponse = userAccountService.login(loginRequest);

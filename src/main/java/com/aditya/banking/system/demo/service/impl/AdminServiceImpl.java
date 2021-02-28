@@ -5,6 +5,7 @@ import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Employee;
 import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.service.api.AdminService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class AdminServiceImpl implements AdminService {
     EmployeeRepository employeeRepository;
 
     @Override
-    public Employee saveEmployee(Employee employee) {
+    public Employee createEmployee(Employee employee) {
         try {
             employee.setCreatedBy(employee.getEmail());
             employee.setCreatedDate(new Date());

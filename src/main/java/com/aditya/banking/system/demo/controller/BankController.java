@@ -7,6 +7,8 @@ import com.aditya.banking.system.demo.model.request.BankModel;
 import com.aditya.banking.system.demo.service.api.BankService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
 
+import io.swagger.annotations.ApiOperation;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,8 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> addBank(@RequestHeader(value = "userId") String userId,
+    @ApiOperation(value = "Create Bank by Admin only")
+    public ResponseEntity<Object> createBank(@RequestHeader(value = "userId") String userId,
                                           @RequestBody BankModel bankModel) {
         try {
             Bank bank = requestMappingUtils.mapBankModelRequest(bankModel);
@@ -44,6 +47,7 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Get Bank details by Admin only")
     public ResponseEntity<Object> getBankDetails(@RequestHeader(value = "userId") String userId,
                                                  @RequestHeader(value = "bankId") Long bankId) {
         try {
@@ -57,6 +61,7 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Update Bank details by Admin only")
     public ResponseEntity<Object> updateBank(@RequestHeader(value = "userId") String userId,
                                              @RequestBody BankModel bankModel, @RequestHeader(value = "bankId") Long bankId) {
         try {
@@ -71,6 +76,7 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Delete Bank details by Admin only")
     public ResponseEntity<Object> deleteBank(@RequestHeader(value = "userId") String userId,
                                              @RequestHeader(value = "bankId") Long bankId) {
         try {

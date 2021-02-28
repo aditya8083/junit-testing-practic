@@ -15,6 +15,7 @@ import com.aditya.banking.system.demo.security.jwt.JwtUtils;
 import com.aditya.banking.system.demo.security.services.UserDetailsImpl;
 import com.aditya.banking.system.demo.service.api.UserAccountService;
 import com.aditya.banking.system.demo.utils.MappingUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +63,8 @@ public class UserAccountServiceImpl implements UserAccountService {
     public void register(UserAccountModel userAccountModel) {
 
         UserAccount userAccount = new UserAccount(userAccountModel.getUsername(), userAccountModel.getEmail(), encoder.encode(userAccountModel.getPassword()));
-
         Set<String> strRoles = userAccountModel.getRole();
         Set<Role> roles = new HashSet<>();
-
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -112,11 +111,7 @@ public class UserAccountServiceImpl implements UserAccountService {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return new LoginResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles);
+        return new LoginResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles);
     }
 
 
