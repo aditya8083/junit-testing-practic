@@ -2,10 +2,12 @@ package com.aditya.banking.system.demo.controller;
 
 import com.aditya.banking.system.demo.dao.BranchRepository;
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
+import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Branch;
 import com.aditya.banking.system.demo.model.request.BranchModel;
 import com.aditya.banking.system.demo.service.api.BranchService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> addBranch(@RequestParam(value = "userId") String userId,
+    public ResponseEntity<Object> addBranch(@RequestHeader(value = "userId") String userId,
                                             @RequestBody BranchModel branchModel) {
         try {
             Branch branch = requestMappingUtils.mapBranchModelRequest(branchModel);
@@ -46,8 +48,8 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> getBranchDetails(@RequestParam(value = "userId") String userId,
-                                                   @RequestParam(value = "branchId") Long branchId) {
+    public ResponseEntity<Object> getBranchDetails(@RequestHeader(value = "userId") String userId,
+                                                   @RequestHeader(value = "branchId") Long branchId) {
         try {
             Branch savedBranchDetails = branchService.getBranchDetails(userId, branchId);
             return new ResponseEntity<>(savedBranchDetails, HttpStatus.OK);
@@ -59,8 +61,8 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> updateBranch(@RequestParam(value = "userId") String userId,
-                                               @RequestBody BranchModel branchModel, @RequestParam(value = "branchId") Long branchId) {
+    public ResponseEntity<Object> updateBranch(@RequestHeader(value = "userId") String userId,
+                                               @RequestBody BranchModel branchModel, @RequestHeader(value = "branchId") Long branchId) {
         try {
             Branch bank = requestMappingUtils.mapBranchModelRequest(branchModel);
             Branch updatedBranch = branchService.updateBranch(userId, bank, branchId);
@@ -73,11 +75,11 @@ public class BranchController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> deleteBranch(@RequestParam(value = "userId") String userId,
-                                               @RequestParam(value = "branchId") Long branchId) {
+    public ResponseEntity<Object> deleteBranch(@RequestHeader(value = "userId") String userId,
+                                               @RequestHeader(value = "branchId") Long branchId) {
         try {
             branchService.deleteBranch(userId, branchId);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
         } catch (Exception exception) {
             LOG.error("Error in deleting bank branch by User : {}, {}", userId, exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);

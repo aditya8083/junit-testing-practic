@@ -11,9 +11,13 @@ import javax.persistence.Column;
 @NoArgsConstructor
 public class BankModel {
 
+    @NonNull
     private String name;
+    @NonNull
     private String logo;
+    @NonNull
     private String email;
+    @NonNull
     private String contactNo;
     private BankStatus status;
 

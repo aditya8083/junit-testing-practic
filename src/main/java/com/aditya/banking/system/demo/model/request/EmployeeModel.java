@@ -1,10 +1,7 @@
 package com.aditya.banking.system.demo.model.request;
 
 import com.aditya.banking.system.demo.entity.constant.enums.EmployeeStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -15,11 +12,17 @@ import java.util.Date;
 public class EmployeeModel {
 
     private String id;
+    @NonNull
     private String firstName;
+
     private String middleName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String email;
+    @NonNull
     private String contactNo;
+
     private Date dateOfBirth;
     private Date joinedDate;
     private Date lastDayOfWork;
