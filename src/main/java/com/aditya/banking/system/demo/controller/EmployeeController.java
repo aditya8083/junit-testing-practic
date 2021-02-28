@@ -4,7 +4,7 @@ import com.aditya.banking.system.demo.entity.constant.ApiPath;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Employee;
 import com.aditya.banking.system.demo.model.request.EmployeeModel;
-import com.aditya.banking.system.demo.service.api.AdminService;
+import com.aditya.banking.system.demo.service.api.EmployeeService;
 import com.aditya.banking.system.demo.utils.RequestMappingUtils;
 
 import io.swagger.annotations.ApiOperation;
@@ -17,18 +17,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "Employee CRUD APIs")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(ApiPath.ADMIN)
-public class AdminController {
+public class EmployeeController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
     RequestMappingUtils requestMappingUtils;
 
     @Autowired
-    AdminService adminService;
+    EmployeeService adminService;
 
     @PostMapping(value = "/bankEmployee")
     @PreAuthorize("hasRole('ADMIN')")

@@ -2,7 +2,7 @@ package com.aditya.banking.system.demo.service.api;
 
 import com.aditya.banking.system.demo.entity.dao.Employee;
 
-public interface AdminService {
+public interface EmployeeService {
     /**
      * Create bank employee by admin only
      *

@@ -4,7 +4,7 @@ import com.aditya.banking.system.demo.dao.EmployeeRepository;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Employee;
 import com.aditya.banking.system.demo.exception.BusinessLogicException;
-import com.aditya.banking.system.demo.service.api.AdminService;
+import com.aditya.banking.system.demo.service.api.EmployeeService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AdminServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     EmployeeRepository employeeRepository;

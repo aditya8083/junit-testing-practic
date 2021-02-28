@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "Branch CRUD APIs")
 @CrossOrigin("*")
 @RequestMapping(ApiPath.BRANCH)
 public class BranchController {

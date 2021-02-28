@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "Bank CRUD APIs")
 @CrossOrigin("*")
 @RequestMapping(ApiPath.BANK)
 public class BankController {

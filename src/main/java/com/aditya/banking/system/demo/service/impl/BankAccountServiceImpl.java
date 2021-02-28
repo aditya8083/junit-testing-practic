@@ -21,7 +21,7 @@ import java.util.Optional;
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AdminServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     BankAccountRepository bankAccountRepository;

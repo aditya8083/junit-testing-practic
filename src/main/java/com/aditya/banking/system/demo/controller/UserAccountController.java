@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "Login and Register API")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(ApiPath.ACCOUNT)
 public class UserAccountController {

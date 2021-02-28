@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@RestController(value = "Bank Account APIs, createAccount, transfer, getBalance, printAcccountStatement, InterestCalculation")
 @CrossOrigin("*")
 @RequestMapping(ApiPath.BANK_ACCOUNT)
 public class BankAccountController {

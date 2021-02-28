@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController(value = "Customer CRUD APIs")
 @CrossOrigin("*")
 @RequestMapping(ApiPath.CUSTOMER)
 public class CustomerController {

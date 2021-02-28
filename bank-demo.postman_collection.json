@@ -5,20 +5,6 @@
 	"order": [],
 	"folders": [
 		{
-			"name": "AdminController - Employee",
-			"description": "",
-			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
-			"order": [
-				"30f28f1b-eb73-48d6-06b2-fddd752c0804",
-				"d1907ed9-347c-4ccc-7f59-e008957f5965",
-				"9e38aa2f-8bf8-e3e9-8c71-925f3b8c3549",
-				"47082b91-f3c0-b93b-8c36-3d3c235803ba"
-			],
-			"owner": 0,
-			"folders_order": [],
-			"id": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635"
-		},
-		{
 			"name": "BankAccountController",
 			"description": "",
 			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
@@ -76,6 +62,20 @@
 			"owner": 0,
 			"folders_order": [],
 			"id": "073200cc-e4e4-9b55-0a99-0db0a7f98364"
+		},
+		{
+			"name": "EmployeeController",
+			"description": "",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"order": [
+				"30f28f1b-eb73-48d6-06b2-fddd752c0804",
+				"d1907ed9-347c-4ccc-7f59-e008957f5965",
+				"9e38aa2f-8bf8-e3e9-8c71-925f3b8c3549",
+				"47082b91-f3c0-b93b-8c36-3d3c235803ba"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "f6ea5b5b-d924-46e2-2b36-009fa8bdd635"
 		},
 		{
 			"name": "UserAccountController",
