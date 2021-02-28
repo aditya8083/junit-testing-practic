@@ -1,6 +1,7 @@
 package com.aditya.banking.system.demo.utils;
 
 import com.aditya.banking.system.demo.entity.dao.*;
+import com.aditya.banking.system.demo.model.request.UserAccountModel;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import java.util.Date;
 @Slf4j
 public class MappingUtils {
 
-    public Customer mapUserAccountToCustomerEntity(UserAccount userAccount) {
+    public Customer mapUserAccountToCustomerEntity(UserAccountModel userAccount) {
         return new DozerBeanMapper().map(userAccount, Customer.class);
     }
 
