@@ -4,7 +4,7 @@ public interface ApiPath {
     String BANK = "/bank";
     String ADMIN = BANK + "/admin";
     String BRANCH = BANK + "/branch";
-    String BANK_ACCOUNT = BANK + "/bank-account";
+    String BANK_ACCOUNT = BANK +"/account" ;
     String CUSTOMER = BANK + "/customer";
     String ACCOUNT = BANK +"/account";
 }

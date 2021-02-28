@@ -30,8 +30,7 @@ public class MappingUtils {
     public BankAccount mapBankAccountEntity(BankAccount previousAccount, double withdrawalAmount, double depositAmount) {
         BankAccount bankAccount = new BankAccount();
         settleBalances(bankAccount, previousAccount, withdrawalAmount, depositAmount);
-        bankAccount.setId(previousAccount.getId());
-        bankAccount.setInterestRate(previousAccount.getInterestRate());
+        bankAccount.setInterestRate(previousAccount.getInterestRate() == null ? 3.5 : previousAccount.getInterestRate() );
         bankAccount.setNumber(previousAccount.getNumber());
         bankAccount.setBankBranchId(previousAccount.getBankBranchId());
         bankAccount.setStatus(previousAccount.getStatus());
@@ -40,11 +39,15 @@ public class MappingUtils {
         bankAccount.setUpdatedBy(previousAccount.getUpdatedBy());
         bankAccount.setCreatedBy(previousAccount.getCreatedBy());
         bankAccount.setCreatedDate(previousAccount.getCreatedDate());
+        if(previousAccount.getId() != null) {
+            bankAccount.setId(previousAccount.getId());
+        }
         return bankAccount;
     }
 
     private void settleBalances(BankAccount bankAccount, BankAccount previousAccount, double withdrawalAmount, double depositAmount) {
-        bankAccount.setClosingBalance(roundDoubleValue(previousAccount.getClosingBalance() - withdrawalAmount + depositAmount));
+        Double previousClosingBalance = previousAccount.getClosingBalance() == null ? 0.0 : previousAccount.getClosingBalance();
+        bankAccount.setClosingBalance(roundDoubleValue(previousClosingBalance - withdrawalAmount + depositAmount));
         bankAccount.setDepositAmount(depositAmount);
         bankAccount.setWithdrawalAmount(withdrawalAmount);
     }

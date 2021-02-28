@@ -5,7 +5,6 @@ import com.aditya.banking.system.demo.entity.constant.enums.BankAccountStatus;
 import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.BankAccount;
 import com.aditya.banking.system.demo.entity.dao.BankAccountTransaction;
-import com.aditya.banking.system.demo.entity.dao.CustomerAccount;
 import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.service.api.BankAccountService;
 import com.aditya.banking.system.demo.utils.MappingUtils;
@@ -51,9 +50,19 @@ public class BankAccountServiceImpl implements BankAccountService {
                 bankAccount.setCreatedDate(new Date());
                 bankAccount.setUpdatedBy(customerId.toString());
                 bankAccount.setUpdatedDate(new Date());
-                BankAccount savedBankAccount = doTransaction(bankAccount, bankAccount.getWithdrawalAmount(), bankAccount.getDepositAmount());
-                CustomerAccount customerAccount = mappingUtils.getCustomerAccountEntity(savedBankAccount, customerId);
-                customerAccountRepository.save(customerAccount);
+
+                Double withdrawalAmount = bankAccount.getWithdrawalAmount() == null ? 0.0 : bankAccount.getWithdrawalAmount();
+                Double depositAmount = bankAccount.getDepositAmount() == null ? 0.0 : bankAccount.getDepositAmount();
+                Double previousClosingBalance = bankAccount.getClosingBalance() == null ? 0.0 : bankAccount.getClosingBalance();
+
+                BankAccount updatedBankAccount = mappingUtils.mapBankAccountEntity(bankAccount, withdrawalAmount, depositAmount);
+                BankAccount savedBankAccount = bankAccountRepository.save(updatedBankAccount);
+
+                BankAccountTransaction bankAccountTransaction =
+                        mappingUtils.getBankAccountTransactionEntity(savedBankAccount.getNumber(), previousClosingBalance, withdrawalAmount, depositAmount);
+                bankAccountTransactionRepository.save(bankAccountTransaction);
+
+                customerAccountRepository.save(mappingUtils.getCustomerAccountEntity(savedBankAccount, customerId));
                 return savedBankAccount;
             } catch (Exception e) {
                 LOG.error("Error in saving the bankAccount details for customerId : {}", customerId);

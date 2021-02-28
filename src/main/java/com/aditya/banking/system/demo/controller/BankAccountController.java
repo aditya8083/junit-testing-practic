@@ -39,7 +39,7 @@ public class BankAccountController {
 
     @RequestMapping(value = "/createBankAccount", method = RequestMethod.POST)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Object> createAccount(@RequestParam(value = "customerId") Long customerId,
+    public ResponseEntity<Object> createAccount(@RequestHeader(value = "customerId") Long customerId,
                                                 @RequestBody BankAccountModel bankAccountModel) {
         try {
             BankAccount bankAccount = requestMappingUtils.mapBankAccountModelRequest(bankAccountModel);
@@ -53,8 +53,8 @@ public class BankAccountController {
 
     @RequestMapping(value = "/depositMoney", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Object> depositMoney(@RequestParam(value = "customerId") Long customerId,
-                                               @RequestParam Long accountNumber, @RequestParam Double amount) {
+    public ResponseEntity<Object> depositMoney(@RequestHeader(value = "customerId") Long customerId,
+                                               @RequestHeader Long accountNumber, @RequestHeader Double amount) {
         try {
             bankAccountService.depositMoney(customerId, accountNumber, amount);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
@@ -66,8 +66,8 @@ public class BankAccountController {
 
     @RequestMapping(value = "/getBalance", method = RequestMethod.GET)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Object> getAccountBalance(@RequestParam(value = "customerId") Long customerId,
-                                                    @RequestParam Long accountNumber) {
+    public ResponseEntity<Object> getAccountBalance(@RequestHeader(value = "customerId") Long customerId,
+                                                    @RequestHeader Long accountNumber) {
         try {
             Double balance = bankAccountService.getAccountBalance(customerId, accountNumber);
             return new ResponseEntity<>(balance, HttpStatus.OK);
@@ -79,8 +79,8 @@ public class BankAccountController {
 
     @RequestMapping(value = "/transferMoney", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Object> transferMoney(@RequestParam(value = "customerId") Long customerId,
-                                                @RequestParam Long fromAccount, @RequestParam Long toAccount, @RequestParam Double transferAmount) {
+    public ResponseEntity<Object> transferMoney(@RequestHeader(value = "customerId") Long customerId,
+                                                @RequestHeader Long fromAccount, @RequestHeader Long toAccount, @RequestHeader Double transferAmount) {
         try {
             bankAccountService.transferMoney(customerId, fromAccount, toAccount, transferAmount);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
@@ -92,14 +92,14 @@ public class BankAccountController {
 
     @RequestMapping(value = "/printAccountStatement", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public void printAccountStatement(@RequestParam(value = "customerId") Long customerId,
-                                      @RequestParam Long accountNumber, HttpServletResponse response) throws DocumentException, IOException {
+    public void printAccountStatement(@RequestHeader(value = "customerId") Long customerId,
+                                      @RequestHeader Long accountNumber, HttpServletResponse response) throws DocumentException, IOException {
         List<BankAccountTransaction> bankAccountTransactions = bankAccountService.printAccountStatement(customerId, accountNumber);
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=" + bankAccountTransactions.get(0).getBankAccountNumber()  +"-transactions_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=" + bankAccountTransactions.get(0).getBankAccountNumber() + "-transactions_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
         BankAccountStatementPDFExporter exporter = new BankAccountStatementPDFExporter(bankAccountTransactions);
         exporter.export(response);
@@ -107,8 +107,8 @@ public class BankAccountController {
 
     @RequestMapping(value = "/calculateInterest", method = RequestMethod.PUT)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<Object> calculateInterest(@RequestParam(value = "customerId") Long customerId,
-                                                    @RequestParam Long accountNumber, @RequestParam Long yearsPassed) {
+    public ResponseEntity<Object> calculateInterest(@RequestHeader(value = "customerId") Long customerId,
+                                                    @RequestHeader Long accountNumber, @RequestHeader Long yearsPassed) {
         try {
             Double interestAmount = bankAccountService.calculateInterest(customerId, accountNumber, yearsPassed);
             return new ResponseEntity<>(interestAmount, HttpStatus.OK);
