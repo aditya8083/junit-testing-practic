@@ -36,4 +36,14 @@ public interface CustomerService {
      * @return delete customer
      */
     void deleteCustomer(Long customerId);
+
+
+    /**
+     * Update Kyc-details by Admin and User Both
+     *
+     * @param kycId   kycId
+     * @param customerId customerId
+     * @return updated customerDetails
+     */
+    Customer updateKycDetails(String kycId, Long customerId);
 }

@@ -70,7 +70,8 @@
 			"order": [
 				"be925a0c-0da2-b70a-9b48-796715ee2fc7",
 				"4ece1d51-0e13-b8c4-c232-27b2360be95d",
-				"5a57b4ee-c831-f29b-ec01-0b801afba26f"
+				"5a57b4ee-c831-f29b-ec01-0b801afba26f",
+				"9d968ef2-c0f5-3e32-f05a-3f615467c7ba"
 			],
 			"owner": 0,
 			"folders_order": [],
@@ -932,6 +933,55 @@
 			"helperAttributes": {},
 			"folder": "27fa08d5-61a7-e760-6342-365444344d6b",
 			"rawModeData": "{\n    \"createdDate\": \"2021-02-28T10:12:57.002+00:00\",\n    \"createdBy\": \"12321\",\n    \"updatedDate\": \"2021-02-28T10:12:57.002+00:00\",\n    \"updatedBy\": \"12321\",\n    \"id\": 3,\n    \"code\": \"aditya-bank-branch2\",\n    \"ifscCode\": \"23423fd12f\",\n    \"email\": \"a122211@aditya.com\",\n    \"contactNo\": \"1212334324\",\n    \"bankId\": 3,\n    \"status\": \"OPEN\",\n    \"address1\": \"updated\",\n    \"address2\": \"updated\",\n    \"city\": null,\n    \"state\": null,\n    \"zip\": null,\n    \"country\": null\n}"
+		},
+		{
+			"id": "9d968ef2-c0f5-3e32-f05a-3f615467c7ba",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw\ncustomerId: 1\nkycId: 23423423\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMWFkaXR5YSIsImlhdCI6MTYxNDUxMDM1MCwiZXhwIjoxNjE0NTk2NzUwfQ.guiuwWKVzHo0tCt7UlP-iQxTiek76U7j9ucwO4mQHkIEKzUWiAeW1NlDvGWLCYgzvLlGA-Tp2w1UdJkoctlQTw",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "customerId",
+					"value": "1",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "kycId",
+					"value": "23423423",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8083/bank/customer/updateKyc",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "dd5d8c5e-13d5-4723-8f48-a634c7add631",
+			"data": null,
+			"dataMode": "params",
+			"name": "updateKyc",
+			"description": "http://localhost:8083/bank/customer/updateKyc",
+			"descriptionFormat": "html",
+			"time": 1614522182327,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "073200cc-e4e4-9b55-0a99-0db0a7f98364"
 		},
 		{
 			"id": "9e38aa2f-8bf8-e3e9-8c71-925f3b8c3549",

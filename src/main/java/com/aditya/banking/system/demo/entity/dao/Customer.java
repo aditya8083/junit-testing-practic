@@ -63,4 +63,12 @@ public class Customer extends BaseEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getKycInfo() {
+        return kycInfo;
+    }
+
+    public void setKycInfo(String kycInfo) {
+        this.kycInfo = kycInfo;
+    }
 }

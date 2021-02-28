@@ -45,6 +45,20 @@ public class CustomerController {
         }
     }
 
+    @RequestMapping(value = "/updateKyc", method = RequestMethod.PUT)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Update kyc info by Admin and User Both")
+    public ResponseEntity<Object> updateKycCustomer(
+            @RequestHeader String kycId, @RequestHeader(value = "customerId") Long customerId) {
+        try {
+            Customer updatedCustomerDetails = customerService.updateKycDetails( kycId, customerId);
+            return new ResponseEntity<>(updatedCustomerDetails, HttpStatus.OK);
+        } catch (Exception exception) {
+            LOG.error("Error in updating the customer details : {}, {}", customerId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @ApiOperation(value = "Get saved customerDetails by Admin and User Both")
@@ -60,7 +74,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
-    @ApiOperation(value = "Delete customer by Admin Onlu")
+    @ApiOperation(value = "Delete customer by Admin Only")
     public ResponseEntity<Object> deleteCustomer(@RequestHeader(value = "customerId") Long customerId) {
         try {
             customerService.deleteCustomer(customerId);

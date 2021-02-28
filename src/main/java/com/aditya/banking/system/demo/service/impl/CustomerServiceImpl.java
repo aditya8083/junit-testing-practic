@@ -70,4 +70,18 @@ public class CustomerServiceImpl implements CustomerService {
             throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
         }
     }
+
+    @Override
+    public Customer updateKycDetails(String kycId, Long customerId) {
+        if (customerRepository.existsById(customerId)) {
+            Customer savedCustomer = customerRepository.findById(customerId).get();
+            savedCustomer.setUpdatedBy(savedCustomer.getEmail());
+            savedCustomer.setUpdatedDate(new Date());
+            savedCustomer.setKycInfo(kycId);
+            return customerRepository.save(savedCustomer);
+        }else{
+            LOG.info("Customer does not exists : {} ", customerId);
+            throw new BusinessLogicException(ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getCode(), ResponseCode.CUSTOMER_DOES_NOT_EXISTS.getMessage());
+        }
+    }
 }
