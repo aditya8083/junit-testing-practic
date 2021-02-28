@@ -31,13 +31,13 @@ public class Customer extends BaseEntity {
     private String firstName;
 
     private String middleName;
+
     @NonNull
     private String lastName;
 
     @Column(unique = true)
     private String email;
 
-    @Column(unique = true)
     private String contactNo;
 
     private Date dateOfBirth;
@@ -54,5 +54,13 @@ public class Customer extends BaseEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

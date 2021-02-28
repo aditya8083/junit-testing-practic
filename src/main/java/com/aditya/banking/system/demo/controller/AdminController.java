@@ -28,7 +28,7 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.POST)
-    public ResponseEntity<Object> addBankEmployee(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> addBankEmployee(@RequestParam(value = "userId") String userId,
                                                   @RequestBody EmployeeModel employeeModel) {
         try {
             Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
@@ -42,7 +42,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateBankEmployee(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> updateBankEmployee(@RequestParam(value = "userId") String userId,
                                                      @RequestBody EmployeeModel employeeModel, @RequestParam Long employeeId) {
         try {
             Employee employee = requestMappingUtils.mapEmployeeModelRequest(employeeModel);
@@ -55,7 +55,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteBankEmployee(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> deleteBankEmployee(@RequestParam(value = "userId") String userId,
                                                      @RequestParam(value = "employeeId") Long employeeId){
         try {
             adminService.deleteEmployee(userId, employeeId);
@@ -67,7 +67,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/bankEmployee", method = RequestMethod.GET)
-    public ResponseEntity<Object> getBankEmployee(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> getBankEmployee(@RequestParam(value = "userId") String userId,
                                                   @RequestParam(value = "employeeId") Long employeeId) {
         try {
             Employee employee = adminService.getEmployeeDetails(userId, employeeId);

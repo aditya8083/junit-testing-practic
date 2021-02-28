@@ -30,7 +30,7 @@ public class BranchController {
     RequestMappingUtils requestMappingUtils;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> addBranch(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> addBranch(@RequestParam(value = "userId") String userId,
                                             @RequestBody BranchModel branchModel) {
         try {
             Branch branch = requestMappingUtils.mapBranchModelRequest(branchModel);
@@ -43,7 +43,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> getBranchDetails(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> getBranchDetails(@RequestParam(value = "userId") String userId,
                                                    @RequestParam(value = "branchId") Long branchId) {
         try {
             Branch savedBranchDetails = branchService.getBranchDetails(userId, branchId);
@@ -55,7 +55,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateBranch(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> updateBranch(@RequestParam(value = "userId") String userId,
                                                @RequestBody BranchModel branchModel, @RequestParam(value = "branchId") Long branchId) {
         try {
             Branch bank = requestMappingUtils.mapBranchModelRequest(branchModel);
@@ -68,7 +68,7 @@ public class BranchController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteBranch(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> deleteBranch(@RequestParam(value = "userId") String userId,
                                                @RequestParam(value = "branchId") Long branchId) {
         try {
             branchService.deleteBranch(userId, branchId);

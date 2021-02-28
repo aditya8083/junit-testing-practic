@@ -20,41 +20,41 @@ public class BaseEntity implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    private Long createdBy;
+    private String createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDate;
-    private Long updatedBy;
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public void setUpdatedBy(Long updatedBy) {
-        this.updatedBy = updatedBy;
-    }
+    private String updatedBy;
 
     public Date getCreatedDate() {
         return createdDate;
     }
 
-    public Long getCreatedBy() {
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getCreatedBy() {
         return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Date getUpdatedDate() {
         return updatedDate;
     }
 
-    public Long getUpdatedBy() {
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public String getUpdatedBy() {
         return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }

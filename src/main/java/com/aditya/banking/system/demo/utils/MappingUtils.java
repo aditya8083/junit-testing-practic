@@ -21,7 +21,7 @@ public class MappingUtils {
         customerAccount.setBankId(bankAccount.getId());
         customerAccount.setCreatedBy(bankAccount.getCreatedBy());
         customerAccount.setCreatedDate(bankAccount.getCreatedDate());
-        customerAccount.setUpdatedBy(customerId);
+        customerAccount.setUpdatedBy(customerId.toString());
         customerAccount.setUpdatedDate(new Date());
         customerAccount.setCustomerId(customerId);
         return customerAccount;

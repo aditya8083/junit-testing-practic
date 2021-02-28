@@ -27,23 +27,22 @@ public class CustomerController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> addCustomer(@RequestParam(value = "userId", defaultValue = "12345678") Long userId,
-                                              @RequestBody CustomerModel customerModel) {
+    public ResponseEntity<Object> addCustomer(@RequestBody CustomerModel customerModel) {
         try {
             Customer customer = requestMappingUtils.mapCustomerModelRequest(customerModel);
-            Customer savedCustomer = customerService.saveCustomer(userId, customer);
+            Customer savedCustomer = customerService.saveCustomer(customer);
             return new ResponseEntity<>(savedCustomer, HttpStatus.CREATED);
         } catch (Exception exception) {
-            LOG.error("Error in saving the customer data by User : {}, {}", userId, exception.getMessage());
+            LOG.error("Error in saving the customer data by User : {}, {}", customerModel.getEmail(), exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> getCustomerDetails(@RequestParam(value = "userId", defaultValue = "12345678") Long userId,
+    public ResponseEntity<Object> getCustomerDetails(
                                                      @RequestParam(value = "customerId") Long customerId) {
         try {
-            Customer savedCustomer = customerService.getCustomerDetails(userId, customerId);
+            Customer savedCustomer = customerService.getCustomerDetails(customerId);
             return new ResponseEntity<>(savedCustomer, HttpStatus.OK);
         } catch (Exception exception) {
             LOG.error("Error in getting the customer details : {}, {}", customerId, exception.getMessage());
@@ -52,11 +51,11 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCustomer(@RequestParam(value = "userId", defaultValue = "12345678") Long userId,
+    public ResponseEntity<Object> updateCustomer(
                                                  @RequestBody CustomerModel customerModel, @RequestParam(value = "customerId") Long customerId) {
         try {
             Customer customer = requestMappingUtils.mapCustomerModelRequest(customerModel);
-            Customer updatedCustomerDetails = customerService.updateCustomer(userId, customer, customerId);
+            Customer updatedCustomerDetails = customerService.updateCustomer( customer, customerId);
             return new ResponseEntity<>(updatedCustomerDetails, HttpStatus.OK);
         } catch (Exception exception) {
             LOG.error("Error in updating the customer details : {}, {}", customerId, exception.getMessage());
@@ -65,10 +64,10 @@ public class CustomerController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteCustomer(@RequestParam(value = "userId", defaultValue = "12345678") Long userId,
+    public ResponseEntity<Object> deleteCustomer(
                                                  @RequestParam(value = "customerId") Long customerId) {
         try {
-            customerService.deleteCustomer(userId, customerId);
+            customerService.deleteCustomer(customerId);
             return new ResponseEntity<>(null, HttpStatus.OK);
         } catch (Exception exception) {
             LOG.error("Error in deleting the customer details : {}, {}", customerId, exception.getMessage());

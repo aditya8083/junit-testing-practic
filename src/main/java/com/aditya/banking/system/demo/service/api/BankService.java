@@ -4,11 +4,11 @@ import com.aditya.banking.system.demo.entity.dao.Bank;
 
 public interface BankService {
 
-    Bank saveBank(Long userId, Bank bank);
+    Bank saveBank(String userId, Bank bank);
 
-    Bank getBankDetails(Long userId, Long bankId);
+    Bank getBankDetails(String userId, Long bankId);
 
-    Bank updateBank(Long userId, Bank bank, Long bankId);
+    Bank updateBank(String userId, Bank bank, Long bankId);
 
-    void deleteBank(Long userId, Long bankId);
+    void deleteBank(String userId, Long bankId);
 }

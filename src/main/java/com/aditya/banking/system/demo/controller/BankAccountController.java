@@ -80,7 +80,7 @@ public class BankAccountController {
             bankAccountService.transferMoney(customerId, fromAccount, toAccount, transferAmount);
             return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
         } catch (Exception exception) {
-            LOG.error("Error in transferring amount for customer from Account1 to Account2  : {}, {}", customerId, fromAccount, toAccount);
+            LOG.error("Error in transferring amount for customer from Account1 to Account2  : {}, {}, {}", customerId, fromAccount, toAccount);
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

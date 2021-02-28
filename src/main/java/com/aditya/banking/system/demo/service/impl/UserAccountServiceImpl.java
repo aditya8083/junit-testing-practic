@@ -10,6 +10,9 @@ import com.aditya.banking.system.demo.entity.dao.UserAccount;
 import com.aditya.banking.system.demo.exception.BusinessLogicException;
 import com.aditya.banking.system.demo.model.request.LoginRequest;
 import com.aditya.banking.system.demo.model.request.UserAccountModel;
+import com.aditya.banking.system.demo.model.response.LoginResponse;
+import com.aditya.banking.system.demo.security.jwt.JwtUtils;
+import com.aditya.banking.system.demo.security.services.UserDetailsImpl;
 import com.aditya.banking.system.demo.service.api.UserAccountService;
 import com.aditya.banking.system.demo.utils.MappingUtils;
 import org.slf4j.Logger;
@@ -21,10 +24,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.Optional;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
@@ -42,14 +47,18 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired(required=true)
+    @Autowired
     PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
 
     @Autowired
     AuthenticationManager authenticationManager;
 
 
     @Override
+    @Transactional
     public void register(UserAccountModel userAccountModel) {
 
         UserAccount userAccount = new UserAccount(userAccountModel.getUsername(), userAccountModel.getEmail(), encoder.encode(userAccountModel.getPassword()));
@@ -77,20 +86,20 @@ public class UserAccountServiceImpl implements UserAccountService {
                 }
             });
         }
-    /*    try {
+       try {
             Customer customer = mappingUtils.mapUserAccountToCustomerEntity(userAccountModel);
-            customerServiceImpl.saveCustomer(Long.valueOf(userAccountModel.getUsername().hashCode()), customer);
+            customerServiceImpl.saveCustomer(customer);
         } catch (Exception exception) {
             LOG.error("Exception while saving the customer data to database : {}", userAccount);
-            throw new BusinessLogicException(ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getCode(), ResponseCode.DUPLICATE_REQUEST_BODY_FIELDS.getMessage());
-        }*/
+            throw new BusinessLogicException(ResponseCode.SYSTEM_ERROR.getCode(), ResponseCode.SYSTEM_ERROR.getMessage());
+        }
         userAccount.setRoles(roles);
         userAccountRepository.save(userAccount);
 
     }
 
-   /* @Override
-    public UserDetailsImpl login(LoginRequest loginRequest) {
+    @Override
+    public LoginResponse login(LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -98,24 +107,17 @@ public class UserAccountServiceImpl implements UserAccountService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        Optional<UserAccount> account = userAccountRepository.findByIdAndPassword(loginRequest.getUsername(), loginRequest.getPassword());
-        if (account.isPresent()) {
-            userAccountRepository.save(account.get());
-        } else {
-            LOG.info("Account does not exists in database : {}", userId);
-            throw new BusinessLogicException(ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getCode(), ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getMessage());
-        }
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return new LoginResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles);
     }
 
-    @Override
-    public void logout(Long userId) {
-        Optional<UserAccount> account = userAccountRepository.findById(userId);
-        if (account.isPresent()) {
-            account.get().setLoggedIn(false);
-            userAccountRepository.save(account.get());
-        } else {
-            LOG.info("Account does not exists in database : {}", userId);
-            throw new BusinessLogicException(ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getCode(), ResponseCode.ACCOUNT_DOES_NOT_EXISTS.getMessage());
-        }
-    }*/
+
 }

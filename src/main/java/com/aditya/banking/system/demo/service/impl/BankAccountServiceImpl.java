@@ -47,9 +47,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     public BankAccount createBankAccount(Long customerId, BankAccount bankAccount) {
         if (customerRepository.existsById(customerId) && branchRepository.existsById(bankAccount.getBankBranchId())) {
             try {
-                bankAccount.setCreatedBy(customerId);
+                bankAccount.setCreatedBy(customerId.toString());
                 bankAccount.setCreatedDate(new Date());
-                bankAccount.setUpdatedBy(customerId);
+                bankAccount.setUpdatedBy(customerId.toString());
                 bankAccount.setUpdatedDate(new Date());
                 BankAccount savedBankAccount = doTransaction(bankAccount, bankAccount.getWithdrawalAmount(), bankAccount.getDepositAmount());
                 CustomerAccount customerAccount = mappingUtils.getCustomerAccountEntity(savedBankAccount, customerId);

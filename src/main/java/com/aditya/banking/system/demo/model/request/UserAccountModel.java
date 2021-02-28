@@ -21,16 +21,16 @@ public class UserAccountModel {
 
     private Set<String> role;
 
-  /*  @NonNull
+    @NonNull
     private String contactNo;
 
     @NonNull
     private String firstName;
 
     @NonNull
-    private String lastName;*/
+    private String lastName;
 
-   // private boolean isEmployee = false;
+   private boolean isEmployee = false;
 
     public String getUsername() {
         return username;
@@ -62,5 +62,37 @@ public class UserAccountModel {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isEmployee() {
+        return isEmployee;
+    }
+
+    public void setEmployee(boolean employee) {
+        isEmployee = employee;
     }
 }

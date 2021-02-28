@@ -21,11 +21,11 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository customerRepository;
 
     @Override
-    public Customer saveCustomer(Long userId, Customer customer) {
+    public Customer saveCustomer(Customer customer) {
         try {
-            customer.setCreatedBy(userId);
+            customer.setCreatedBy(customer.getEmail());
             customer.setCreatedDate(new Date());
-            customer.setUpdatedBy(userId);
+            customer.setUpdatedBy(customer.getEmail());
             customer.setUpdatedDate(new Date());
             return customerRepository.save(customer);
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerDetails(Long userId, Long customerId) {
+    public Customer getCustomerDetails(Long customerId) {
         if (customerRepository.existsById(customerId)) {
             return customerRepository.findById(customerId).get();
         } else {
@@ -45,13 +45,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomer(Long userId, Customer customer, Long customerId) {
+    public Customer updateCustomer(Customer customer, Long customerId) {
         if (customerRepository.existsById(customerId)) {
             Customer savedCustomer = customerRepository.findById(customerId).get();
             customer.setId(customerId);
             customer.setCreatedBy(savedCustomer.getCreatedBy());
             customer.setCreatedDate(savedCustomer.getCreatedDate());
-            customer.setUpdatedBy(userId);
+            customer.setUpdatedBy(savedCustomer.getEmail());
             customer.setUpdatedDate(new Date());
             return customerRepository.save(customer);
         } else {
@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Long userId, Long customerId) {
+    public void deleteCustomer(Long customerId) {
         if (customerRepository.existsById(customerId)) {
             customerRepository.deleteById(customerId);
         } else {

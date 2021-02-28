@@ -26,7 +26,7 @@ public class BankController {
     RequestMappingUtils requestMappingUtils;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> addBank(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> addBank(@RequestParam(value = "userId") String userId,
                                           @RequestBody BankModel bankModel) {
         try {
             Bank bank = requestMappingUtils.mapBankModelRequest(bankModel);
@@ -39,7 +39,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> getBankDetails(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> getBankDetails(@RequestParam(value = "userId") String userId,
                                                  @RequestParam(value = "bankId") Long bankId) {
         try {
             Bank savedBankDetails = bankService.getBankDetails(userId, bankId);
@@ -51,7 +51,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateBank(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> updateBank(@RequestParam(value = "userId") String userId,
                                              @RequestBody BankModel bankModel, @RequestParam(value = "bankId") Long bankId) {
         try {
             Bank bank = requestMappingUtils.mapBankModelRequest(bankModel);
@@ -64,7 +64,7 @@ public class BankController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteBank(@RequestParam(value = "userId") Long userId,
+    public ResponseEntity<Object> deleteBank(@RequestParam(value = "userId") String userId,
                                              @RequestParam(value = "bankId") Long bankId) {
         try {
             bankService.deleteBank(userId, bankId);
