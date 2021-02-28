@@ -56,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/bank/**", "/swagger-ui.html#/**").permitAll()
-                .antMatchers("/bank/**",  "/swagger-ui.html#/**").permitAll()
+                .authorizeRequests().antMatchers("/bank/account/*").permitAll()
+                .antMatchers( "/swagger-ui*").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

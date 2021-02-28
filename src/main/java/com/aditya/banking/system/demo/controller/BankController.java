@@ -1,6 +1,7 @@
 package com.aditya.banking.system.demo.controller;
 
 import com.aditya.banking.system.demo.entity.constant.ApiPath;
+import com.aditya.banking.system.demo.entity.constant.enums.ResponseCode;
 import com.aditya.banking.system.demo.entity.dao.Bank;
 import com.aditya.banking.system.demo.model.request.BankModel;
 import com.aditya.banking.system.demo.service.api.BankService;
@@ -28,7 +29,7 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> addBank(@RequestParam(value = "userId") String userId,
+    public ResponseEntity<Object> addBank(@RequestHeader(value = "userId") String userId,
                                           @RequestBody BankModel bankModel) {
         try {
             Bank bank = requestMappingUtils.mapBankModelRequest(bankModel);
@@ -42,8 +43,8 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> getBankDetails(@RequestParam(value = "userId") String userId,
-                                                 @RequestParam(value = "bankId") Long bankId) {
+    public ResponseEntity<Object> getBankDetails(@RequestHeader(value = "userId") String userId,
+                                                 @RequestHeader(value = "bankId") Long bankId) {
         try {
             Bank savedBankDetails = bankService.getBankDetails(userId, bankId);
             return new ResponseEntity<>(savedBankDetails, HttpStatus.OK);
@@ -55,8 +56,8 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.PUT)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> updateBank(@RequestParam(value = "userId") String userId,
-                                             @RequestBody BankModel bankModel, @RequestParam(value = "bankId") Long bankId) {
+    public ResponseEntity<Object> updateBank(@RequestHeader(value = "userId") String userId,
+                                             @RequestBody BankModel bankModel, @RequestHeader(value = "bankId") Long bankId) {
         try {
             Bank bank = requestMappingUtils.mapBankModelRequest(bankModel);
             Bank updatedBank = bankService.updateBank(userId, bank, bankId);
@@ -69,11 +70,11 @@ public class BankController {
 
     @RequestMapping(method = RequestMethod.DELETE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> deleteBank(@RequestParam(value = "userId") String userId,
-                                             @RequestParam(value = "bankId") Long bankId) {
+    public ResponseEntity<Object> deleteBank(@RequestHeader(value = "userId") String userId,
+                                             @RequestHeader(value = "bankId") Long bankId) {
         try {
             bankService.deleteBank(userId, bankId);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(ResponseCode.SUCCESS.getMessage(), HttpStatus.OK);
         } catch (Exception exception) {
             LOG.error("Error in deleting the bank  details by User : {}, {}", userId, exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);

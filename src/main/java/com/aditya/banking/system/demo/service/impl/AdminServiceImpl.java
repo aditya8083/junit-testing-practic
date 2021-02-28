@@ -21,11 +21,11 @@ public class AdminServiceImpl implements AdminService {
     EmployeeRepository employeeRepository;
 
     @Override
-    public Employee saveEmployee(String userId, Employee employee) {
+    public Employee saveEmployee(Employee employee) {
         try {
-            employee.setCreatedBy(userId);
+            employee.setCreatedBy(employee.getEmail());
             employee.setCreatedDate(new Date());
-            employee.setUpdatedBy(userId);
+            employee.setUpdatedBy(employee.getEmail());
             employee.setUpdatedDate(new Date());
             return employeeRepository.save(employee);
         } catch (Exception e) {
@@ -36,13 +36,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Employee updateEmployee(String userId, Employee employee, Long employeeId) {
+    public Employee updateEmployee(Employee employee, Long employeeId) {
         if (employeeRepository.existsById(employeeId)) {
             Employee savedEmployee = employeeRepository.findById(employeeId).get();
             employee.setId(employeeId);
             employee.setCreatedBy(savedEmployee.getCreatedBy());
             employee.setCreatedDate(savedEmployee.getCreatedDate());
-            employee.setUpdatedBy(userId);
+            employee.setUpdatedBy(employeeId.toString());
             employee.setUpdatedDate(new Date());
             return employeeRepository.save(employee);
         } else {
@@ -52,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void deleteEmployee(String userId, Long employeeId) {
+    public void deleteEmployee(Long employeeId) {
 
         if (employeeRepository.existsById(employeeId)) {
             employeeRepository.deleteById(employeeId);
@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Employee getEmployeeDetails(String userId, Long employeeId) {
+    public Employee getEmployeeDetails(Long employeeId) {
 
         if (employeeRepository.existsById(employeeId)) {
             return employeeRepository.findById(employeeId).get();

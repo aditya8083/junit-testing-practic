@@ -41,7 +41,6 @@ public class Employee extends BaseEntity {
     @Column(unique = true)
     private String contactNo;
 
-    private boolean isAdmin  = false;
     private Date dateOfBirth;
     private Date joinedDate;
     private Date lastDayOfWork;
@@ -57,7 +56,11 @@ public class Employee extends BaseEntity {
         this.id = id;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

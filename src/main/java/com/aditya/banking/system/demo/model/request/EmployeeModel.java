@@ -14,12 +14,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class EmployeeModel {
 
+    private String id;
     private String firstName;
     private String middleName;
     private String lastName;
     private String email;
     private String contactNo;
-    private boolean isAdmin = false;
     private Date dateOfBirth;
     private Date joinedDate;
     private Date lastDayOfWork;
